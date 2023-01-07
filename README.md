@@ -5,7 +5,8 @@ To run this:<br/>
 -git clone https://github.com/GrantMelvin/ECUQuestCS.git<br/>
 -npm install<br/>
 -npm start<br/>
--cd src/server<br/>
+-cd src<br/>
+-cd server<br/>
 -npm run dev<br/>
 (Until posted to the cloud)<br/>
 
