@@ -4,8 +4,8 @@ import { AccountContext } from '../AccountContext' ;
 import { useContext } from 'react' ;
 import { useNavigate } from "react-router" ;
 import { Button, Stack, useColorModeValue } from '@chakra-ui/react' ;
-import { CgLogOut } from '@react-icons/all-files/cg/CgLogOut'
-import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
+import { CgLogOut } from 'react-icons/cg'
+import { AiFillGithub } from 'react-icons/ai'
 
 
 function Sidebar() {
