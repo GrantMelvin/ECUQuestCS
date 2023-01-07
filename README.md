@@ -1,6 +1,14 @@
 # ECUQuestCS
 A web application that allows lower-level computer science students to practice topics that are central to the East Carolina Univertsity cirriculum.
 
+(Until it's posted to the cloud)
+To run this:<br/>
+-git clone https://github.com/GrantMelvin/ECUQuestCS.git
+-npm install
+-npm start
+-cd src/server
+-npm run dev
+
 --------------------------------------------------------------------------
 
 ![image](https://user-images.githubusercontent.com/92465197/211129997-5e151c0e-2fd6-4501-b304-72130257ad05.png)
