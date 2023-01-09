@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const client = require("../databases/DB");
+const client = require("../database/DB");
 const bcrypt = require("bcrypt");
 
 const validateForm = require("../controllers/validateForm");
