@@ -8,7 +8,6 @@ To run this:<br/>
 -cd src<br/>
 -cd server<br/>
 -npm run dev<br/>
-(Until posted to the cloud)<br/>
 
 --------------------------------------------------------------------------
 
