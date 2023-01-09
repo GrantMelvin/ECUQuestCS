@@ -6,6 +6,7 @@ To run this:<br/>
 - npm install<br/>
 - npm start<br/>
 - "npm run dev" in server folder
+( Only works for creator with access to postgreSQL database for now...<br/>
 
 --------------------------------------------------------------------------
 
