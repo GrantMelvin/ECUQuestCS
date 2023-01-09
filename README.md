@@ -5,8 +5,8 @@ To run this:<br/>
 - git clone https://github.com/GrantMelvin/ECUQuestCS.git<br/>
 - npm install<br/>
 - npm start<br/>
-- "npm run dev" in server folder
-( Only works for creator with access to postgreSQL database for now...<br/>
+- "npm run dev" in server folder<br/>
+( Only works for creator with access to postgreSQL database for now... )<br/>
 
 --------------------------------------------------------------------------
 
