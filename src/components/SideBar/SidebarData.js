@@ -1,8 +1,8 @@
 import React from 'react' ;
-import { CgProfile } from 'react-icons/cg' ;
-import { SiGoogleanalytics } from 'react-icons/si'
-import { IoMdHome } from 'react-icons/io'
-import { MdComputer } from 'react-icons/md'
+import { CgProfile } from '@react-icons/all-files/cg/CgProfile' ;
+import { SiGoogleanalytics } from '@react-icons/all-files/si/SiGoogleanalytics'
+import { IoMdHome } from '@react-icons/all-files/io/IoMdHome'
+import { MdComputer } from '@react-icons/all-files/md/MdComputer'
 
 export const SidebarData= [
     {
