@@ -1,14 +1,16 @@
-FROM node:16
+FROM node:bullseye AS Production
 
-WORKDIR /my-app
+ENV NODE_ENV=production
 
-COPY package.json . 
+WORKDIR /usr/src/client
+
+COPY package.json .
+COPY package-lock.json .
 
 RUN npm install
 
-EXPOSE 3000
-
 COPY . .
 
-CMD ["npm", "start"]
+RUN npm run build 
 
+CMD ["sh", "-c", "npm run start"]

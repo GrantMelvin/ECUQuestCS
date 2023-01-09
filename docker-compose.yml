@@ -1,9 +1,45 @@
 version: '3.8'
 services:
-  app:
-    build: .
-    container_name: src_container_7
-    ports:
-      - '3000:3000'
-    stdin_open: true
+  postgres:
+    image: postgres:15.1
+    restart: always
     tty: true
+    ports:
+      - 5432:5432
+    networks:
+      - shared-network
+    volumes:
+      - ./postgres-db:/var/lib/postgresql/data
+
+  api:
+    container_name: ecuquestcs_api
+    restart: unless-stopped
+    image: api
+    build: 
+      context: api
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    networks:
+      - shared-network
+    depends_on:
+      - postgres
+
+  client:
+    container_name: ecuquestcs_client
+    restart: unless-stopped
+    image: client
+    build: 
+      context: src
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - shared-network
+    depends_on:
+      - api
+
+networks:
+  shared-network:
