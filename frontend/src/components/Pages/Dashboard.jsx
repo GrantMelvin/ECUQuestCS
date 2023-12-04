@@ -242,7 +242,6 @@ const Dashboard = () => {
         >
             <HStack>
             {Sidebar()}
-            {console.log(articles)}
             <VStack
             spacing={25}
             >
