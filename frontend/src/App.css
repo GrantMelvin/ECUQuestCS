@@ -112,7 +112,7 @@ body {
 
 #footer{
   position: absolute ;
-  width: 15% ;
+  width: 15vw ;
   bottom: 0 ;
-  font-size: small;
+  font-size: medium;
 }

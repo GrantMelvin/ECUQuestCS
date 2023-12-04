@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 const validateForm = require("../controllers/validateForm");
 
-// client.connect() ;
+client.connect() ;
 
 router
   .route("/login")
@@ -18,8 +18,7 @@ router
         firstname: req.session.user.firstname, 
         lastname: req.session.user.lastname});
     } else {
-      console.log(2)
-      res.json({ loggedIn: true });
+      res.json({ loggedIn: false });
     }
   })
   .post(async (req, res) => {
