@@ -43,8 +43,6 @@ app.use(session({
 
 app.use("/auth", authRouter) ; 
 
-io.on("connect", (socket) => {}) ;
-
 // Confirms connection to dev
 app.listen(4000, ()=>{
     console.log("Server is now listening at port 4000");

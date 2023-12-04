@@ -18,7 +18,8 @@ router
         firstname: req.session.user.firstname, 
         lastname: req.session.user.lastname});
     } else {
-      res.json({ loggedIn: false });
+      console.log(2)
+      res.json({ loggedIn: true });
     }
   })
   .post(async (req, res) => {
