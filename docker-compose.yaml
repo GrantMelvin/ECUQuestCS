@@ -18,6 +18,8 @@ services:
       - '3000:3000'
     stdin_open: true
     tty: true
+    networks:
+      - my-net
 
 networks:
   my-net:
