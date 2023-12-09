@@ -4,8 +4,8 @@ import { AccountContext } from '../AccountContext.js' ;
 import { useContext } from 'react' ;
 import { useNavigate } from "react-router" ;
 import { Button, Stack, useColorModeValue, Box } from '@chakra-ui/react' ;
-import { CgLogOut } from '@react-icons/all-files/cg/CgLogOut'
-import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
+// import { CgLogOut } from '@react-icons/all-files/cg/CgLogOut'
+// import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
 
 
 function Sidebar() {
@@ -51,7 +51,7 @@ function Sidebar() {
         <li className="row">
           <Button 
           variant="unstyled"
-          leftIcon={<CgLogOut/>}
+          // leftIcon={<CgLogOut/>}
           onClick ={() => {
             logOut()
             }}>
@@ -64,7 +64,7 @@ function Sidebar() {
             onClick={() => {
               window.location.href="https://github.com/GrantMelvin/ECUQuestCS.git" ;
           }}>
-            <div id="icon" bg='red'>{<AiFillGithub/>}</div><div id="title" >{'github'}</div>
+            {/* <div id="icon" bg='red'>{<AiFillGithub/>}</div><div id="title" >{'github'}</div> */}
           </li>    
       </ul>
     </Stack>

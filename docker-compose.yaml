@@ -1,0 +1,25 @@
+version: "2.22"
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend_container
+    ports: 
+      - '4000:4000'
+    volumes:
+      - './backend:/app'
+    networks:
+      - my-net
+
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    ports: 
+      - '3000:3000'
+    stdin_open: true
+    tty: true
+
+networks:
+  my-net:
+    driver: bridge
+    name: my-net
