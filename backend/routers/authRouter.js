@@ -5,7 +5,13 @@ const bcrypt = require("bcrypt");
 
 const validateForm = require("../controllers/validateForm");
 
-client.connect() ;
+client.connect((err) => {
+  if (err){
+    console.log(err.message)
+    return ;
+  }
+  console.log("Database connected!")
+}) ;
 
 router
   .route("/login")
