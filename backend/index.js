@@ -3,17 +3,8 @@ const {Server} = require("socket.io") ;
 const app = express() ;
 const authRouter = require('./routers/authRouter')
 const session = require('express-session') ;
-const dotenv = require('dotenv').config()
 const cors = require('cors') ;
-const server = require("http").createServer(app) ;
 const helmet = require('helmet') ;
-
-const io = new Server(server, {
-    cors: {
-        origin: "http//localhost:3000",
-        credentials: true,
-    },
-}) ;
 
 app.use(helmet()) ;
 
@@ -25,7 +16,6 @@ app.use(
 );
 
 app.use(express.json()) ;
-
 
 app.use(session({
     secret: 'awdjkawndkjawndawndjn',
