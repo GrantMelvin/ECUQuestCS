@@ -1,9 +1,10 @@
 import React from 'react' ;
-import { SidebarData } from "./SidebarData.js" ;
+import { SidebarData } from "./Navbardata.jsx" ;
 import { AccountContext } from '../AccountContext.js' ;
 import { useContext } from 'react' ;
 import { useNavigate } from "react-router" ;
-import { Button, Stack, useColorModeValue, Box } from '@chakra-ui/react' ;
+import { Button, Stack, useColorModeValue, Image, Text, Box, HStack, VStack } from '@chakra-ui/react' ;
+import logo from '../imgs/ECUQuestCS.png'
 // import { CgLogOut } from '@react-icons/all-files/cg/CgLogOut'
 // import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
 
@@ -33,9 +34,17 @@ function Sidebar() {
   }
 
   return (
-    <Stack bg={sideBarColor} className="Sidebar">
+    <VStack bg={sideBarColor} className="Sidebar">
       <ul className='sideBarList' color={itemColor}>
-        <li className="row" id="name" >ECUQuestCS</li>
+        <li>
+          <HStack>
+          <Image 
+          src={logo}
+          boxSize='10vh'
+          objectFit='cover'/>
+          <Text fontSize={'3vh'} fontFamily={'source-code-pro'}>ECUQuestCS</Text>
+          </HStack>
+        </li>
         {SidebarData.map((val, key) => {
         return (
           <li key={key} 
@@ -67,7 +76,7 @@ function Sidebar() {
             {/* <div id="icon" bg='red'>{<AiFillGithub/>}</div><div id="title" >{'github'}</div> */}
           </li>    
       </ul>
-    </Stack>
+    </VStack>
   )
 }
 

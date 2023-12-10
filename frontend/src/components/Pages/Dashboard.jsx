@@ -1,4 +1,4 @@
-import Sidebar from '../SideBar/Sidebar'
+import Sidebar from '../Navbar/Navbar'
 import "../../App.css"
 import { HStack, VStack, Text, Button } from '@chakra-ui/react';
 import Feature from './Classes/Feature';
@@ -236,15 +236,11 @@ const Dashboard = () => {
     }
 
     return(
-        <HStack
-        spacing={50}
-        className='dashboard'
-        >
+        <HStack w='100vw'>
+            <VStack>{Sidebar()}</VStack>
+
             <HStack>
-            {Sidebar()}
-            <VStack
-            spacing={25}
-            >
+            <VStack>
                 <Text as='b'
                 fontSize={'3xl'}
                 className='header'>

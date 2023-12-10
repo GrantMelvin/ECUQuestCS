@@ -1,5 +1,5 @@
 import { HStack, VStack, useColorModeValue } from '@chakra-ui/react';
-import Sidebar from "../../SideBar/Sidebar";
+import Sidebar from "../../Navbar/Navbar";
 import Cards from './Cards';
 import prim from '../../imgs/prim.png'
 import loops from '../../imgs/loops.png'

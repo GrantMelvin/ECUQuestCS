@@ -1,5 +1,5 @@
 import {VStack, ButtonGroup, Button, 
-Heading, Text } from "@chakra-ui/react" ;
+Heading, Text, Image, HStack } from "@chakra-ui/react" ;
 import { Form, Formik } from "formik";
 import * as Yup from "yup" ;
 import TextField from "./TextField"
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { AccountContext } from "../AccountContext";
 import { useContext } from "react" ;
 import { useState } from "react";
+import logo from '../imgs/ECUQuestCS.png'
 
 const Login = () => {
 
@@ -72,38 +73,51 @@ const Login = () => {
                 h="100vh"
                 spacing="1rem"
                 >
-                    <Heading>Login</Heading>
+                  <Heading fontFamily={'code-source-pro'}>ECUQuestCS</Heading>
+                    <HStack w='100%'>
+                      <Image 
+                      src={logo}
+                      boxSize='15vw'
+                      objectFit='cover'/>
+
+                      <VStack w='100%'>
+                      <TextField 
+                        w='15vw'
+                        name="email"
+                        placeholder="Enter email"
+                        autoComplete="off"
+                        label="Email"
+                        />
+          
+                      <TextField 
+                        name="password"
+                        placeholder="Enter password"
+                        autoComplete="off"
+                        type="password"
+                        label="Password"
+                        />
+                        </VStack>
+                    </HStack>
 
                     <Text as="p" color="red.500">
                       {error}
                     </Text>
         
-                    <TextField 
-                    name="email"
-                    placeholder="Enter email"
-                    autoComplete="off"
-                    label="Email"
-                    />
-         
-                    <TextField 
-                    name="password"
-                    placeholder="Enter password"
-                    autoComplete="off"
-                    type="password"
-                    label="Password"
-                    />
 
                    
-        
                     <ButtonGroup pt="1rem">
 
-                        <Button colorScheme="teal" type="submit">
-                            Login
-                        </Button>
+                        <VStack>
 
-                        <Button colorScheme="teal" onClick={() => navigate("/register")}>
-                            Create Account
-                        </Button>
+                          <Button colorScheme="teal" type="submit">
+                              Login
+                          </Button>
+
+                          <Button colorScheme="teal" onClick={() => navigate("/register")}>
+                              Create an Account
+                          </Button> 
+
+                        </VStack>
 
                     </ButtonGroup>
                 </VStack> 
