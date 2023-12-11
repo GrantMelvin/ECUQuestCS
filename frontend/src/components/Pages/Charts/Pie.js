@@ -15,6 +15,8 @@ const PieCharts = ({...props}) => {
 
     const [useTitle, setUseTitle] = useState("") ;
 
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => { 
         let trueQuest = 0
         let falseQuest = 0
@@ -44,13 +46,15 @@ const PieCharts = ({...props}) => {
               setUseTitle(props.title)
               setAnswers([trueQuest,falseQuest, unanswered]) ;
             }
+            setLoading(false)
         })}
         fetchData() ;
     },[]);   
 
 
     return (
-        
+      <>
+      {(loading) ? <></> : 
       <Chart 
         type="pie"
         width={225}
@@ -86,7 +90,8 @@ const PieCharts = ({...props}) => {
             }
           }}
         >
-        </Chart>
+        </Chart> }
+        </>
     )
 }
 

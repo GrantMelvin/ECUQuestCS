@@ -11,7 +11,6 @@ const Analytics = () => {
   return(
     <HStack spacing={'20%'}>
       <VStack>{Sidebar()}</VStack>
-
       <VStack spacing={100}>
 
         <HStack spacing={25}>

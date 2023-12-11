@@ -26,10 +26,11 @@ function CSCI2530() {
       >
         <Cards
         img={arrays}
+        topic='Array'
         alt="arrays"
         title="Arrays"
         desc="Practice intermediate questions with arrays!"
-        link="/Arrays"
+        link="/Question"
         />
       </VStack>
       <VStack
@@ -37,20 +38,22 @@ function CSCI2530() {
       >
         <Cards
         img={pointersPic}
+        topic='Pointer'
         alt="pointers"
         title="Pointers"
         desc="Learn about pointers!"
-        link="/Pointers"
+        link="/Question"
         />
       </VStack>
       <VStack
       spacing = {25}>
       <Cards
         img={housePic}
+        topic='Structure'
         alt="Structures"
         title="Structures"
         desc="Practice Structures!"
-        link='/Structs'
+        link='/Question'
         />
       </VStack>
     </HStack>

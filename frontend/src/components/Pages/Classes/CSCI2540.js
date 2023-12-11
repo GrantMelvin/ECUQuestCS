@@ -23,10 +23,11 @@ function CSCI2540() {
       >
         <Cards
         img={linkedList}
+        topic='LinkedList'
         alt="Linked Lists"
         title="Linked Lists"
         desc="Practice the basics with Linked Lists!"
-        link="/LinkedLists"
+        link="/Question"
         />
       </VStack>
       <VStack
@@ -34,20 +35,22 @@ function CSCI2540() {
       >
         <Cards
         img={stack}
+        topic='Stack'
         alt="Stacks"
         title="Stacks"
         desc="Practice Stacks!"
-        link="/Stacks"
+        link="/Question"
         />
       </VStack>
       <VStack
       spacing = {25}>
       <Cards
         img={treePic}
+        topic='BinaryTree'
         alt="Binary Trees"
         title="Binary Trees"
         desc="Practice the basics with Binary Trees!"
-        link="/BinaryTrees"
+        link="/Question"
         />
       </VStack>
     </HStack>
