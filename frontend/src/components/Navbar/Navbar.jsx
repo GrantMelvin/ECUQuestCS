@@ -1,6 +1,6 @@
 import React from 'react' ;
 import { SidebarData } from "./Navbardata.jsx" ;
-import { AccountContext } from '../AccountContext.js' ;
+import { AccountContext } from '../AccountContext.jsx';
 import { useContext } from 'react' ;
 import { useNavigate } from "react-router" ;
 import { Button, Stack, useColorModeValue, Image, Text, Box, HStack, VStack } from '@chakra-ui/react' ;

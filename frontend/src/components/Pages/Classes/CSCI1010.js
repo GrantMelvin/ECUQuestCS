@@ -8,8 +8,6 @@ import io from '../../imgs/io.png'
 
 function CSCI1010() {
   const themeMode = (localStorage.getItem('chakra-ui-color-mode') === 'dark') ;
-
-
   const loopsPic = useColorModeValue(loops, loopsLight) ;
 
   return(
@@ -26,6 +24,7 @@ function CSCI1010() {
       >
         <Cards
         img={prim}
+        topic="Primitive"
         alt="Primitive Data Types"
         title="Primitive Data Types"
         desc="Practice Primitive Data Types!"
@@ -36,10 +35,11 @@ function CSCI1010() {
       spacing = {25}>
       <Cards
         img={io}
+        topic="input/output"
         alt="Input and Output"
         title="Input / Output"
         desc="Practice the basics with input/ouput!"
-        link='/InputOutput'
+        link='/Question'
         />
       </VStack>
       <VStack
@@ -47,10 +47,11 @@ function CSCI1010() {
       >
         <Cards
         img={loopsPic}
+        topic="Loop"
         alt="Loops"
         title="Loops"
         desc="Practice the basics with Loops!"
-        link="/Loops"
+        link='/Question'
         />
       </VStack>
     </HStack>

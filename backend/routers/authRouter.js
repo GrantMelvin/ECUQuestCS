@@ -21,7 +21,9 @@ router
         loggedIn: true, 
         email: req.session.user.email, 
         firstname: req.session.user.firstname, 
-        lastname: req.session.user.lastname});
+        lastname: req.session.user.lastname, 
+        topic: req.session.user.topic
+      });
     } else {
       res.json({ loggedIn: false });
     }
@@ -45,12 +47,15 @@ router
           id: potentialLogin.rows[0].id,
           firstname: potentialLogin.rows[0].firstname,
           lastname: potentialLogin.rows[0].lastname,
+          topic: null
         };
         res.json({ 
           loggedIn: true, 
           email: req.body.email, 
           firstname: potentialLogin.rows[0].firstname,
-          lastname: potentialLogin.rows[0].lastname}) ;
+          lastname: potentialLogin.rows[0].lastname,
+          topic: null
+        }) ;
       } else {
         res.json({ loggedIn: false, status: "Wrong email or password" });
         console.log("Unsuccessful Login Attempt");
@@ -80,7 +85,8 @@ router.post("/register", async (req, res) => {
       id: newUserQuery.rows[0].id,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-    };
+      topic: req.body.topic
+    }
     res.json({ loggedIn: true, email: req.body.email });
   } else {
     res.json({ loggedIn: false, status: "Email is already taken" });
@@ -94,7 +100,8 @@ router
       loggedIn: true, 
       email: req.session.user.email, 
       firstname: req.session.user.firstname, 
-      lastname: req.session.user.lastname
+      lastname: req.session.user.lastname,
+      topic: req.session.user.topic
     });
   })
   .post(async (req, res) => {
@@ -111,7 +118,7 @@ router
   .post(async (req, res) => {
     const availableQuestions = await client.query(
       "SELECT * FROM questions WHERE id NOT IN (SELECT questionid FROM answerhistory WHERE email=$1) AND questiontype=$2;", 
-      [req.body.user.email, req.body.type]
+      [req.body.user.email, req.body.user.topic]
     )
 
     if(availableQuestions.rowCount === 0){
@@ -186,6 +193,20 @@ router
   }
     }
 )
+
+router
+  .route('/classTopic')
+  .post(async (req, res) => {
+      req.session.user = {
+      loggedIn: true, 
+      email: req.body.user.email, 
+      firstname: req.body.user.firstname, 
+      lastname: req.body.user.lastname,
+      topic: req.body.topic
+    }
+    res.send(req.session.user)
+})
+
 
 router
   .route('/missedResults')

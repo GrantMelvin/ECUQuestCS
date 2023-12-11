@@ -15,8 +15,9 @@ const Question = () => {
   const [userAnswer, setUserAnswer] = useState('initial') ;
   const [answered, setAnswered] = useState(false) ; 
 
-  useEffect(() => { 
+  const [topic, setTopic] = useState('initial')
 
+  useEffect(() => { 
     if(effectRan.current === false){  
       axios({
         method: 'post',
@@ -26,7 +27,6 @@ const Question = () => {
         },
         data: {
           user: user,
-          type: 'Stack'
         }
       })
       .then(response => {
@@ -47,7 +47,6 @@ const Question = () => {
       },
       data: {
         user: user,
-        type: 'Stack'
       }
     })
     .then(response => {
@@ -68,7 +67,7 @@ const Question = () => {
         url: 'http://localhost:4000/auth/Results',
         data: {
           email:user.email, 
-          questiontype: 'Stack',
+          questiontype: user.topic,
           questionid: question.ident, 
           submissionDate: date, 
           correct: isCorrect

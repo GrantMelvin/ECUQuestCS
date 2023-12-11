@@ -5,7 +5,15 @@ const { createContext, useState, useEffect } = require("react");
 export const AccountContext = createContext();
 
 const UserContext = ({ children }) => {
-  const [user, setUser] = useState({ loggedIn: null });
+  const [user, setUser] = useState(
+    { 
+    loggedIn: null,
+    firstname: null,
+    lastname: null,
+    email: null,
+    topic: null 
+  });
+
   const navigate = useNavigate();
   useEffect(() => {
     fetch("http://localhost:4000/auth/login", {
@@ -27,6 +35,7 @@ const UserContext = ({ children }) => {
           setUser({ loggedIn: false });
           return;
         }
+        console.log(data)
         setUser({ ...data });
         navigate("/Dashboard");
       });
