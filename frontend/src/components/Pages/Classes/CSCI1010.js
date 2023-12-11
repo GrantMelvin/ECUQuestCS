@@ -29,7 +29,7 @@ function CSCI1010() {
         alt="Primitive Data Types"
         title="Primitive Data Types"
         desc="Practice Primitive Data Types!"
-        link='/Prim'
+        link='/Question'
         />
       </VStack>
       <VStack

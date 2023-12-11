@@ -28,7 +28,7 @@ import BinaryTrees from './Pages/Classes/Subjects/Subjects2540/BinaryTrees'
 import Stacks from './Pages/Classes/Subjects/Subjects2540/Stacks'
 
 import Missed from './Pages/Classes/Subjects/Missed'
-
+import Question from './Pages/Classes/question';
 
 
 const Views = () => {
@@ -50,6 +50,7 @@ const Views = () => {
               <Route path="/Pointers" element={<Pointers/>}/>
               <Route path="/Structs" element={<Structs/>}/>
               <Route path="/Prim" element={<Prim/>}/>
+              <Route path="/Question" element={<Question/>}/>
               <Route path="/InputOutput" element={<InputOutput/>}/>
               <Route path="/Loops" element={<Loops/>}/>
               <Route path="/LinkedLists" element={<LinkedLists/>}/>

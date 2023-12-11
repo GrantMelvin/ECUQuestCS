@@ -8,6 +8,7 @@ import { AccountContext } from "../AccountContext";
 import { useContext } from "react" ;
 import { useState } from "react";
 import logo from '../imgs/ECUQuestCS.png'
+import AnimatePage from "../AnimatePage";
 
 const Login = () => {
 
@@ -104,7 +105,6 @@ const Login = () => {
                     </Text>
         
 
-                   
                     <ButtonGroup pt="1rem">
 
                         <VStack>
