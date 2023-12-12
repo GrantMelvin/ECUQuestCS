@@ -1,11 +1,11 @@
 import { AccountContext } from '../../components/AccountContext';
 import { useContext } from 'react';
-import Sidebar from '../../components/Navbar/Navbar';
-import { HStack, VStack, Text, Button, Stack } from '@chakra-ui/react';
+import { VStack, Text, Button, Stack } from '@chakra-ui/react';
 import React, {useState, useEffect, useRef } from 'react';
 import { Form, Formik } from "formik";
 import axios from 'axios' ;
 import { getCurrentDate } from './Subjects/Utility/getCurrentDate';
+import AnimatePage from '../../components/AnimatePage';
 
 const Question = () => {
   const {user} = useContext(AccountContext) ;
@@ -14,8 +14,6 @@ const Question = () => {
   const [question, setQuestion] = useState("");
   const [userAnswer, setUserAnswer] = useState('initial') ;
   const [answered, setAnswered] = useState(false) ; 
-
-  const [topic, setTopic] = useState('initial')
 
   useEffect(() => { 
     if(effectRan.current === false){  
@@ -59,7 +57,7 @@ const Question = () => {
   return(
     <Formik
     initialValues={{userAnswer: "initial"}}
-    onSubmit={(values, actions) => {
+    onSubmit={() => {
       const isCorrect = (userAnswer == question.answer ? 1 : 0) ;
       const date = getCurrentDate() ;
       axios({
@@ -77,15 +75,16 @@ const Question = () => {
     >
 
     {(formik) => (
-      <VStack>
+      <AnimatePage>
+      <VStack
+      w='100%'
+      h='100%'
+      mt='5vh'>
 
-        <HStack>
-          {Sidebar()} 
-        </HStack>
-    
+      
         <VStack 
         as={Form}
-        className='questionBox' 
+        mt={'10vh'}
         direction="column" 
         spacing={10}> 
 
@@ -180,6 +179,7 @@ const Question = () => {
 
         </VStack>    
       </VStack>
+      </AnimatePage>
     )}
     </Formik>
   ) ;

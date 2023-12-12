@@ -218,6 +218,13 @@ router
   }
 )
 
+router  
+  .route('/CommunityNotes')
+  .post(async (req, res) => {
+    const results = await client.query("SELECT * FROM community_notes ORDER BY created_at DESC LIMIT 5")
+    console.log(results.rows)
+    res.send(results.rows)
+  })
 
 router
   .route('/Results')

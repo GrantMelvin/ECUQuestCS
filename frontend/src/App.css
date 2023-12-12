@@ -87,11 +87,6 @@
   flex: 70% ;
 } */
 
-.questionBox{
-  justify-content:center ;
-  height: 100vh ;
-  width: 100vw ;
-}
 
 #next{
   margin-top: 10%;
@@ -113,12 +108,6 @@
 #notAllowQuestion{
   pointer-events: none ; 
 }
-
-/* .header{
-  position: absolute ;
-  top:5% ;
-  left:20%;
-} */
 
 .dashitems{
   position: relative ;

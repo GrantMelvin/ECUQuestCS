@@ -4,13 +4,15 @@ import Sidebar from "../components/Navbar/Navbar" ;
 import { HStack, VStack, Text } from '@chakra-ui/react' ;
 import React from 'react' ;
 import Pie from './Charts/Pie'
+import AnimatePage from '../components/AnimatePage';
 
 const Analytics = () => {
   const {user} = useContext(AccountContext) ;
   
   return(
-    <VStack spacing={'20%'}>
-      <HStack mb='10vh'>{Sidebar()}</HStack>
+    <AnimatePage>
+    <VStack spacing={'20%'}
+    mt='10vh'>
       <VStack spacing={100}>
 
         <HStack spacing={25}>
@@ -82,7 +84,7 @@ const Analytics = () => {
         </HStack>
       </VStack>
     </VStack>
-     
+    </AnimatePage>
   ) ;
 
 }

@@ -5,19 +5,18 @@ import prim from '../../../components/imgs/prim.png'
 import loops from '../../../components/imgs/loops.png'
 import loopsLight from '../../../components/imgs/loopsLight.png'
 import io from '../../../components/imgs/io.png'
+import AnimatePage from '../../../components/AnimatePage'
 
 function CSCI1010() {
-  const themeMode = (localStorage.getItem('chakra-ui-color-mode') === 'dark') ;
   const loopsPic = useColorModeValue(loops, loopsLight) ;
 
   return(
+    <AnimatePage>
     <VStack
     w='100%'
     h='100%'
     mt='10vh'
     >
-
-
       <HStack w='100%' h='100%' >
 
         <VStack
@@ -59,6 +58,7 @@ function CSCI1010() {
 
       </HStack>
     </VStack>
+    </AnimatePage>
   ) ;
 
 }

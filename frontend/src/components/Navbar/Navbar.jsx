@@ -3,24 +3,26 @@ import { SidebarData } from "./Navbardata.jsx" ;
 import { AccountContext } from '../AccountContext.jsx';
 import { useContext } from 'react' ;
 import { useNavigate } from "react-router" ;
-import { Button, Box, useColorModeValue, Image, Text, ListItem, HStack, List, Select } from '@chakra-ui/react' ;
+import { Button, Box, useColorModeValue, Image, Text, ListItem, HStack, List, Select, Slide } from '@chakra-ui/react' ;
 import logo from '../imgs/ECUQuestCS.png'
 import { CgLogOut } from '@react-icons/all-files/cg/CgLogOut'
 import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
 import { useColorMode } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { useBoolean } from '@chakra-ui/react'
-import { Fade, ScaleFade, Slide, SlideFade, Collapse } from '@chakra-ui/react'
 import { SlBan } from "react-icons/sl";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDisclosure } from '@chakra-ui/react';
-
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useRef } from 'react';
 
 function Sidebar() {
+
+  const effectRan = useRef(false) ;
+  const { user } = useContext(AccountContext)
   const { setUser } = useContext(AccountContext) ;
   const navigate = useNavigate();
 
-  const sideBarColor = useColorModeValue('rgb(194,194,194)', 'linear-gradient(to top, #161a22, #171b24)')
   const itemColor = useColorModeValue('black','white')
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -35,7 +37,6 @@ function Sidebar() {
     },
   })
   .then(res => {
-    console.log(res)
     return res.json() ;
   })
   .then(data => {
@@ -50,11 +51,11 @@ function Sidebar() {
 
 
   return (
-    <HStack 
+    <>
+    {(window.location.pathname != '/') && <HStack 
     className="Sidebar" 
     w='100vw' 
     h='2vh'>
-
     <Slide direction='top' in={!isOpen} style={{ zIndex: 10 }}>
         <Button
         mt='2vh'
@@ -101,6 +102,20 @@ function Sidebar() {
           </Button>
           )
         })}
+
+        <Button 
+          variant={'solid'}
+          rounded={'10px'}
+          w='10vw'
+          ml='1vw'
+          mr='1vw'
+          h='5vh'
+          onClick ={() => {
+            console.log('Create Quest')
+            }}>
+              Create a Quest
+          </Button>
+
         <Select
           w='10vw'
           h='5vh'
@@ -108,16 +123,19 @@ function Sidebar() {
           mr='1vw'
           align='center'
           rounded={'10px'}
-          bg={'#EDF2F7'}
-          placeholder={'Select a course'}
+          bg={colorMode == 'dark' ? '#2C313D' : '#EDF2F7'}
+          placeholder={'Select a quest'}
           onChange={pageChange}
+          value={'/Dashboard'}
         >
           <option value='/CSCI1010'>CSCI 1010</option>
           <option value='/CSCI2530'>CSCI 2530</option>
           <option value='/CSCI2540'>CSCI 2540</option>
         </Select>
 
-        <List ml='20vw'>
+        
+
+        <List ml='19vw'>
 
         <ListItem className='col' mr='1vw'>
           <Button 
@@ -146,7 +164,6 @@ function Sidebar() {
 
         <ListItem className='col' mr='1vw'>
         <Button
-          mr='1vw' 
           variant={'solid'}
           rounded={'10px'}
           onClick={() => {
@@ -162,9 +179,8 @@ function Sidebar() {
         </ListItem>
 
         
-        <ListItem className='col' mr='1vw'>
+        <ListItem className='col'>
         <Button
-        ml='10vw' 
         variant={'solid'}
         rounded={'10px'}
         onClick={() => {
@@ -179,7 +195,8 @@ function Sidebar() {
       </List>
 
       </Slide>
-    </HStack>
+    </HStack>}
+    </>
   )
 }
 

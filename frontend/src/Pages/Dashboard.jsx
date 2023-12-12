@@ -1,5 +1,5 @@
 import Sidebar from "../components/Navbar/Navbar";
-import { HStack, VStack, Text, Button, Box } from '@chakra-ui/react';
+import { HStack, VStack, Text, Button, Box, Divider } from '@chakra-ui/react';
 import Feature from './Classes/Feature';
 import { useContext } from 'react';
 import { AccountContext } from "../components/AccountContext";
@@ -24,37 +24,48 @@ const Dashboard = () => {
     const [recommendations, setRecommendations] = useState([])
     const [articles, setArticles] = useState([['Loading',''], ['Loading',''], ['Loading',''],])
 
-    useEffect(() => {
+    const [communityNotes, setCommunityNotes] = useState([])
+
+
+    useEffect(() => { 
         if(effectRan.current === false){  
-            axios({
-              method: 'post',
-              url: 'http://localhost:4000/auth/getRecs',
-              headers: {
-                'content-type': 'application/json',
-              },
-              data: {
-                user: user
-              }
-            })
-            .then(response => {
-                console.log(response.data)               
-            })
+          axios({
+            method: 'post',
+            url: 'http://localhost:4000/auth/CommunityNotes',
+            headers: {
+              'content-type': 'application/json',
+            }
+          })
+          .then(response => {
+            setCommunityNotes(response.data)
+          })
+        effectRan.current = true ;
+      }}, [communityNotes]);
+
+      const formatDate = (isoDate) => {
+        const date = new Date(isoDate);
+        
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const hours = date.getHours() % 12 || 12; // Convert to 12-hour format
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
       
-          effectRan.current = true ;
-        }
-    },[])
+        return `${month}/${day} ${hours}:${minutes} ${ampm}`;
+      };
 
     return(
         
-        <VStack w='100vw'
+        <VStack 
+        w='100vw'
+        h='85vh'
         mt='10vh'>
-            
-            
 
-            <AnimatePage w='100%'>
-            <HStack w='100%'>
-            <HStack w='100%'>
-            <VStack w='100%'>
+            <AnimatePage w='100%' h='100%'>
+
+            <HStack w='100%'  h='100%'>
+
+            <VStack w='25%'>
                 {/* <Box>
                     <Text as='b'
                     fontSize={'3xl'}
@@ -101,9 +112,8 @@ const Dashboard = () => {
             color={itemColor}
             lineColor={lineColor}
             /></HStack>
-            </HStack>
 
-            <VStack>
+            <VStack w='25%'>
 
                 <Feature
                     title={'Article Recommendations:'}
@@ -142,6 +152,19 @@ const Dashboard = () => {
                         </center>
                     }
                     />
+            </VStack>
+
+            <VStack w='30%' h='100%'>
+                <Feature title={'Community Notes'} 
+                w='100%'
+                desc={ communityNotes.map((note, index) => (
+                    <Box key={index} w='100%' h='15vh'>
+                        <Divider></Divider>
+                        <Text fontWeight={'bold'}>{note.title} - {formatDate(note.created_at)}</Text>
+                        <Text>{note.description}</Text>
+                    </Box>
+                ))}>
+                </Feature>
             </VStack>
             </HStack>
             </AnimatePage>

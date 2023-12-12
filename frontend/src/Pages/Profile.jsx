@@ -6,6 +6,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from "yup" ;
 import { useState } from 'react';
 import TextField from './Login/TextField';
+import AnimatePage from '../components/AnimatePage';
 
 function Profile() {
   const {user} = useContext(AccountContext) ;
@@ -187,7 +188,7 @@ function Profile() {
         >
 
           {(formik) => (
-           
+           <AnimatePage>
             <VStack 
             w="100%" 
             spacing={100}
@@ -292,6 +293,7 @@ function Profile() {
 
             </VStack>
            </VStack>
+           </AnimatePage>
           )}
     </Formik>
   ) ;
