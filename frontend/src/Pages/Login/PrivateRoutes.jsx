@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AccountContext } from '../AccountContext';
+import { AccountContext } from '../../components/AccountContext';
 
 const { Outlet, Navigate } = require('react-router') ;
 

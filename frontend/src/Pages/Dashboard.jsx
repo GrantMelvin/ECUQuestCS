@@ -1,16 +1,15 @@
-import Sidebar from '../Navbar/Navbar'
-import "../../App.css"
+import Sidebar from "../components/Navbar/Navbar";
 import { HStack, VStack, Text, Button, Box } from '@chakra-ui/react';
 import Feature from './Classes/Feature';
 import { useContext } from 'react';
-import { AccountContext } from '../AccountContext';
+import { AccountContext } from "../components/AccountContext";
 import Bar from './Charts/Line' ;
 import { useColorModeValue } from '@chakra-ui/react' ;
 import { useEffect, useRef } from 'react';
 import axios from 'axios' ;
 import { useState } from 'react';
 import { useNavigate } from "react-router";
-import AnimatePage from '../AnimatePage';
+import AnimatePage from '../components/AnimatePage'
 
 
 const Dashboard = () => {
@@ -47,18 +46,18 @@ const Dashboard = () => {
 
     return(
         
-        <HStack w='100vw'>
-            <VStack>{Sidebar()}</VStack>
+        <VStack w='100vw'>
+            <HStack>{Sidebar()}</HStack>
             <AnimatePage w='100%'>
             <HStack w='100%'>
             <VStack w='100%'>
-                <Box>
+                {/* <Box>
                     <Text as='b'
                     fontSize={'3xl'}
                     className='header'>
                     {'Greetings, ' + user.firstname + '!'}
                     </Text>
-                </Box>
+                </Box> */}
 
                 <Feature
                 w='50%'
@@ -141,7 +140,7 @@ const Dashboard = () => {
                     />
             </VStack>
             </AnimatePage>
-        </HStack>
+        </VStack>
         
     ) ;
 

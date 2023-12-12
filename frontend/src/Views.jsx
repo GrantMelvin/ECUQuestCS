@@ -1,19 +1,19 @@
-import { AccountContext } from './AccountContext';
+import { AccountContext } from './components/AccountContext';
 import { useContext } from 'react';
 
 import {Routes, Route} from 'react-router' ;
-import PrivateRoutes from './Login/PrivateRoutes';
+import PrivateRoutes from '../src/Pages/Login/PrivateRoutes'
 
-import Login from "./Login/Login" ;
-import SignUp from "./Login/SignUp" ;
+import Login from './Pages/Login/Login'
+import SignUp from './Pages/Login/SignUp'
 
 import Profile from './Pages/Profile';
 import Dashboard from "./Pages/Dashboard" ;
 import Analytics from './Pages/Analytics';
 
-import CSCI1010 from './Pages/Classes/CSCI1010' ;
-import CSCI2530 from './Pages/Classes/CSCI2530' ;
-import CSCI2540 from './Pages/Classes/CSCI2540' ;
+import CSCI1010 from './Pages/Classes/Subjects/CSCI1010' ;
+import CSCI2530 from './Pages/Classes/Subjects/CSCI2530' ;
+import CSCI2540 from './Pages/Classes/Subjects/CSCI2540' ;
 
 import Missed from './Pages/Classes/Subjects/Missed'
 import Question from './Pages/Classes/question';

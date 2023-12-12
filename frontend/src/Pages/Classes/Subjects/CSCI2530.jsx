@@ -1,11 +1,13 @@
-import { HStack, VStack, useColorModeValue} from '@chakra-ui/react';
-import Sidebar from "../../Navbar/Navbar";
-import Cards from './Cards';
-import arrays from '../../imgs/arrays.png'
-import struct from '../../imgs/house.png'
-import structLight from '../../imgs/houseLight.png'
-import pointers from '../../imgs/pointers.png'
-import pointersLight from '../../imgs/pointersLight.png'
+import { HStack, VStack, useColorModeValue} from '@chakra-ui/react'
+import Sidebar from '../../../components/Navbar/Navbar'
+import Cards from '../Cards'
+
+import arrays from '../../../components/imgs/arrays.png'
+import struct from '../../../components/imgs/house.png'
+import structLight from '../../../components/imgs/houseLight.png'
+import pointers from '../../../components/imgs/pointers.png'
+import pointersLight from '../../../components/imgs/pointersLight.png'
+
 
 function CSCI2530() {
 

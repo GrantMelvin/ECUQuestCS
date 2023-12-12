@@ -3,10 +3,10 @@ import { SidebarData } from "./Navbardata.jsx" ;
 import { AccountContext } from '../AccountContext.jsx';
 import { useContext } from 'react' ;
 import { useNavigate } from "react-router" ;
-import { Button, Stack, useColorModeValue, Image, Text, Box, HStack, VStack } from '@chakra-ui/react' ;
+import { Button, Box, useColorModeValue, Image, Text, ListItem, HStack, List } from '@chakra-ui/react' ;
 import logo from '../imgs/ECUQuestCS.png'
-// import { CgLogOut } from '@react-icons/all-files/cg/CgLogOut'
-// import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
+import { CgLogOut } from '@react-icons/all-files/cg/CgLogOut'
+import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
 
 
 function Sidebar() {
@@ -26,6 +26,7 @@ function Sidebar() {
     },
   })
   .then(res => {
+    console.log(res)
     return res.json() ;
   })
   .then(data => {
@@ -34,49 +35,54 @@ function Sidebar() {
   }
 
   return (
-    <VStack bg={sideBarColor} className="Sidebar">
-      <ul className='sideBarList' color={itemColor}>
-        <li>
-          <HStack>
-          <Image 
-          src={logo}
-          boxSize='10vh'
-          objectFit='cover'/>
-          <Text fontSize={'3vh'} fontFamily={'source-code-pro'}>ECUQuestCS</Text>
-          </HStack>
-        </li>
+    <HStack bg={sideBarColor} className="Sidebar" w='100%' h='100%'>
+      
+      <Box w='100%' h='15vh' align={'left'}>
+        <HStack w='100%' h='100%' id='logo' bg='red'>
+            <Image 
+            src={logo}
+            objectFit='cover'
+            boxSize='100%'
+            padding={'3px'}/>
+            <Box w='100%'><Text fontSize={'3vh'} fontFamily={'source-code-pro'}>ECUQuestCS</Text></Box>
+        </HStack>
+      </Box>
+
+      <List color={itemColor} bg='blue'>
         {SidebarData.map((val, key) => {
         return (
-          <li key={key} 
+          <ListItem key={key} 
           className="row"
           id={window.location.pathname === val.link ? "active" : "" }
           onClick={() => {
             navigate(val.link)
         }}>
           <div id="icon">{val.icon}</div><div id="title">{val.title} </div>
-          </li>
+          </ListItem>
           )
         })}
-        <li className="row">
+
+        <ListItem className='row'>
           <Button 
           variant="unstyled"
-          // leftIcon={<CgLogOut/>}
+          leftIcon={<CgLogOut/>}
           onClick ={() => {
             logOut()
             }}>
-            <div id="signOut">Sign Out</div>
           </Button>
-        </li>    
-          <li 
-            className="row"
-            id="footer"
-            onClick={() => {
-              window.location.href="https://github.com/GrantMelvin/ECUQuestCS.git" ;
-          }}>
-            {/* <div id="icon" bg='red'>{<AiFillGithub/>}</div><div id="title" >{'github'}</div> */}
-          </li>    
-      </ul>
-    </VStack>
+        </ListItem>    
+
+        <ListItem className='row'> 
+          <Button 
+          variant="unstyled"
+          leftIcon={<AiFillGithub/>}
+          onClick ={() => {
+            window.location.href="https://github.com/GrantMelvin/ECUQuestCS.git" ;
+            }}>
+          </Button>
+        </ListItem>    
+      </List>
+    </HStack>
   )
 }
 

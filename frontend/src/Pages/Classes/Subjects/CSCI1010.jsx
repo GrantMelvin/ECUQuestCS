@@ -1,10 +1,10 @@
-import { HStack, VStack, useColorModeValue } from '@chakra-ui/react';
-import Sidebar from "../../Navbar/Navbar";
-import Cards from './Cards';
-import prim from '../../imgs/prim.png'
-import loops from '../../imgs/loops.png'
-import loopsLight from '../../imgs/loopsLight.png'
-import io from '../../imgs/io.png'
+import { HStack, VStack, useColorModeValue } from '@chakra-ui/react'
+import Sidebar from '../../../components/Navbar/Navbar'
+import Cards from '../Cards'
+import prim from '../../../components/imgs/prim.png'
+import loops from '../../../components/imgs/loops.png'
+import loopsLight from '../../../components/imgs/loopsLight.png'
+import io from '../../../components/imgs/io.png'
 
 function CSCI1010() {
   const themeMode = (localStorage.getItem('chakra-ui-color-mode') === 'dark') ;
@@ -20,7 +20,7 @@ function CSCI1010() {
       </VStack>
 
       <VStack
-      spacing = {25}
+      spacing = {25} 
       >
         <Cards
         img={prim}

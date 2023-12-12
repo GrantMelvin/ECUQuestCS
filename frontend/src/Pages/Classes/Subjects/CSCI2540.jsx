@@ -1,10 +1,12 @@
 import { HStack, VStack, useColorModeValue } from '@chakra-ui/react';
-import Sidebar from "../../Navbar/Navbar";
-import Cards from './Cards';
-import stack from '../../imgs/stack.png'
-import tree from '../../imgs/Binary_tree_v2.svg.png'
-import treeLight from '../../imgs/Binary_tree_v2_light.svg.png'
-import linkedList from '../../imgs/linkedlist.png'
+import Sidebar from '../../../components/Navbar/Navbar';
+import Cards from '../Cards';
+import stack from '../../../components/imgs/stack.png'
+import tree from '../../../components/imgs/Binary_tree_v2.svg.png'
+import treeLight from '../../../components/imgs/Binary_tree_v2_light.svg.png'
+import linkedList from '../../../components/imgs/linkedlist.png'
+
+
 
 function CSCI2540() {
   const treePic = useColorModeValue(tree, treeLight) ;

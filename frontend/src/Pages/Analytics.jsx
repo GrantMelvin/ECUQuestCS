@@ -1,6 +1,6 @@
-import { AccountContext } from '../AccountContext' ;
+import { AccountContext } from '../components/AccountContext' ;
 import { useContext } from 'react' ;
-import Sidebar from "../Navbar/Navbar" ;
+import Sidebar from "../components/Navbar/Navbar" ;
 import { HStack, VStack, Text } from '@chakra-ui/react' ;
 import React from 'react' ;
 import Pie from './Charts/Pie'

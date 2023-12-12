@@ -1,6 +1,6 @@
-import { AccountContext } from '../../../AccountContext';
+import { AccountContext } from '../../../components/AccountContext';
 import { useContext } from 'react';
-import Sidebar from "../../../Navbar/Navbar";
+import Sidebar from '../../../components/Navbar/Navbar';
 import { HStack, VStack, Text, Button, Stack } from '@chakra-ui/react';
 import React, {useState, useEffect, useRef } from 'react';
 import { Form, Formik } from "formik";

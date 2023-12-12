@@ -3,14 +3,45 @@
   height: 100vh ;
 }
 
-body {
-  margin: 0 ;
-  padding: 0 ;
+.Sidebar {
+  width: 100vw ;
+  display: flex ;
+  justify-content: space-between ;
 }
 
-.Sidebar {
-  height: 100vh ;
-  width: 15vw ;
+.Sidebar #title {
+  font-size: 18px ;
+  font-weight: bold ;
+  text-decoration: none;
+}
+
+.Sidebar ul{
+  display: flex;
+  align-items: center ;
+}
+
+/* .Sidebar #logo {
+  margin-left: 100vw;
+} */
+
+.Sidebar ul li {
+  width: 9vw;
+  height: 9vh;
+  list-style: none ;
+  align-items: center ;
+}
+
+.Sidebar ul li a {
+  display: block ;
+  text-decoration: none ;
+  color: white ;
+  padding: 0.5rem ;
+  border-radius: 0.5rem ;
+}
+
+/* .Sidebar {
+  height: 15vh ;
+  width: 100vw ;
 }
 
 
@@ -18,16 +49,16 @@ body {
   height: auto ;
   padding: 0 ; 
   width: 100% ;
-}
+} */
 
 
-.sideBarList .row{
+/* .sideBarList .row{
   height: 60px ;
   width: 100% ;
   list-style-type: none ;
   margin: 0 ;
   display: flex ;
-  flex-direction: row ;
+  flex-direction: column ;
   justify-content: center ;
   align-items: center ;
   font-family: 'Lucida Sans', 'Arial, sans-serif','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', ;
@@ -39,22 +70,22 @@ body {
   list-style-type: none ;
   margin: 0 ;
   display: flex ;
-  flex-direction: row ;
+  flex-direction: column ;
   justify-content: center ;
   align-items: center ;
   font-family: 'Lucida Sans', 'Arial, sans-serif','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', ;
-}
+} */
 
-.sideBarList .row:hover:not(#name):not(#active) {
+.Sidebar .row:hover:not(#name):not(#active) {
   cursor: pointer ;
   background-color: rgba(71, 136, 109, 0.842) ;
 }
 
-.sideBarList #active{
+.Sidebar #active{
   background-color: rgba(71, 136, 109, 0.842) ;
 }
 
-.row #icon{
+/* .row #icon{
   flex: 30% ;
   display: grid ;
   place-items: center ;
@@ -62,7 +93,7 @@ body {
 
 .row #title{
   flex: 70% ;
-}
+} */
 
 .questionBox{
   justify-content:center ;
@@ -91,11 +122,11 @@ body {
   pointer-events: none ; 
 }
 
-.header{
+/* .header{
   position: absolute ;
   top:5% ;
   left:20%;
-}
+} */
 
 .dashitems{
   position: relative ;
@@ -110,9 +141,9 @@ body {
   margin: 10px;
 }
 
-#footer{
+/* #footer{
   position: absolute ;
   width: 15vw ;
   bottom: 0 ;
   font-size: medium;
-}
+} */

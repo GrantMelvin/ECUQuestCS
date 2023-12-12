@@ -2,8 +2,9 @@ import { Card, CardFooter, Stack,
 Button, Divider, Text,
 Heading, Image, CardBody, useColorModeValue } from "@chakra-ui/react" ;
 import { useNavigate } from "react-router";
+import Sidebar from "../../components/Navbar/Navbar";
 import { useContext, useState } from "react";
-import { AccountContext } from "../../AccountContext";
+import { AccountContext } from "../../components/AccountContext";
 import axios from "axios";
 
 const Cards = ({...props}) => {

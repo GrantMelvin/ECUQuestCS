@@ -4,11 +4,10 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup" ;
 import TextField from "./TextField"
 import { useNavigate } from "react-router";
-import { AccountContext } from "../AccountContext";
+import { AccountContext } from "../../components/AccountContext";
 import { useContext } from "react" ;
 import { useState } from "react";
-import logo from '../imgs/ECUQuestCS.png'
-import AnimatePage from "../AnimatePage";
+import logo from '../../components/imgs/ECUQuestCS.png'
 
 const Login = () => {
 

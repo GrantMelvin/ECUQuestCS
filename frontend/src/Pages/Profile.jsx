@@ -1,11 +1,11 @@
-import { AccountContext } from '../AccountContext';
+import { AccountContext } from '../components/AccountContext';
 import { useContext } from 'react';
-import Sidebar from "../Navbar/Navbar";
+import Sidebar from '../components/Navbar/Navbar';
 import { HStack, VStack, Text, Button } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import * as Yup from "yup" ;
 import { useState } from 'react';
-import TextField from '../Login/TextField';
+import TextField from './Login/TextField';
 
 function Profile() {
   const {user} = useContext(AccountContext) ;
