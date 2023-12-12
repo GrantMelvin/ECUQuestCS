@@ -190,9 +190,9 @@ function Profile() {
            
             <VStack 
             w="100%" 
-            spacing={100}>
+            spacing={100}
+            mt='10vh'>
             
-            <HStack>{Sidebar()}</HStack>
        
             <VStack spacing={50}>
              <HStack spacing={30}>

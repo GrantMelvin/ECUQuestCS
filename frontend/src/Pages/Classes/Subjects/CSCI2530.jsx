@@ -7,6 +7,7 @@ import struct from '../../../components/imgs/house.png'
 import structLight from '../../../components/imgs/houseLight.png'
 import pointers from '../../../components/imgs/pointers.png'
 import pointersLight from '../../../components/imgs/pointersLight.png'
+import AnimatePage from '../../../components/AnimatePage'
 
 
 function CSCI2530() {
@@ -15,15 +16,12 @@ function CSCI2530() {
   const pointersPic = useColorModeValue(pointers, pointersLight) ;
 
   return(
+    <AnimatePage>
     <VStack
     w='100%'
     h='100%'
+    mt='10vh'
     >
-
-      <HStack mb='10vh'>
-        {Sidebar()} 
-      </HStack>
-
       <HStack w='100%'>
 
       <VStack
@@ -66,6 +64,7 @@ function CSCI2530() {
       </HStack>
 
     </VStack>
+    </AnimatePage>
   ) ;
 
 }

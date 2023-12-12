@@ -14,11 +14,9 @@ function CSCI1010() {
     <VStack
     w='100%'
     h='100%'
+    mt='10vh'
     >
 
-      <HStack mb='10vh'>
-        {Sidebar()} 
-      </HStack>
 
       <HStack w='100%' h='100%' >
 

@@ -5,6 +5,7 @@ import stack from '../../../components/imgs/stack.png'
 import tree from '../../../components/imgs/Binary_tree_v2.svg.png'
 import treeLight from '../../../components/imgs/Binary_tree_v2_light.svg.png'
 import linkedList from '../../../components/imgs/linkedlist.png'
+import AnimatePage from '../../../components/AnimatePage';
 
 
 
@@ -12,15 +13,12 @@ function CSCI2540() {
   const treePic = useColorModeValue(tree, treeLight) ;
 
   return(
+    <AnimatePage>
     <VStack
     w='100%'
     h='100%'
+    mt='10vh'
     >
-
-      <HStack mb='10vh'>
-        {Sidebar()} 
-      </HStack>
-
 
       <HStack w='100%'>
       <VStack
@@ -61,6 +59,7 @@ function CSCI2540() {
       </VStack>
       </HStack>
     </VStack>
+    </AnimatePage>
     
   ) ;
 

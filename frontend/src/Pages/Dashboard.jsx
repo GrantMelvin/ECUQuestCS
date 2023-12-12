@@ -46,8 +46,10 @@ const Dashboard = () => {
 
     return(
         
-        <VStack w='100vw'>
-            <HStack mb='10vh'>{Sidebar()}</HStack>
+        <VStack w='100vw'
+        mt='10vh'>
+            
+            
 
             <AnimatePage w='100%'>
             <HStack w='100%'>

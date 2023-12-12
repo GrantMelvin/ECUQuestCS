@@ -13,7 +13,7 @@ import { useBoolean } from '@chakra-ui/react'
 import { Fade, ScaleFade, Slide, SlideFade, Collapse } from '@chakra-ui/react'
 import { SlBan } from "react-icons/sl";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useHistory } from 'react-router-dom'; // Import the useHistory hook
+import { useDisclosure } from '@chakra-ui/react';
 
 
 function Sidebar() {
@@ -24,7 +24,7 @@ function Sidebar() {
   const itemColor = useColorModeValue('black','white')
 
   const { colorMode, toggleColorMode } = useColorMode();
-  const [flag, setFlag] = useBoolean(true)
+  const {isOpen, onOpen, onClose} = useDisclosure()
 
   const logOut = () => {
     fetch("http://localhost:4000/auth/signout", {
@@ -54,22 +54,21 @@ function Sidebar() {
     className="Sidebar" 
     w='100vw' 
     h='2vh'>
-    <Button
-    mt='7vh'
-    ml='97vw'
-    onClick={() => {
-      if(flag){
-        setFlag.off()
-      }else{
-        setFlag.on()
-      }
-    }}
-    >
-      {<RxHamburgerMenu/>}
-    </Button>
-      {(flag) && 
-        <Slide direction='top' in={flag} style={{ zIndex: 10 }}>
-          <Box w='100%' h='10vh' align={'left'} bg='teal'>
+
+    <Slide direction='top' in={!isOpen} style={{ zIndex: 10 }}>
+        <Button
+        mt='2vh'
+        ml='96vw'
+        onClick={() => {
+          onOpen()
+        }}
+        >
+          {<RxHamburgerMenu/>}
+        </Button>
+    </Slide>
+
+        <Slide direction='top' in={isOpen} onClose={onClose} style={{ zIndex: 10 }}>
+          <Box w='100%' h='10vh' align={'left'} >
             <HStack w='10vw' h='100%' id='logo' >
                 <Image 
                 src={logo}
@@ -81,10 +80,8 @@ function Sidebar() {
             </HStack>
           </Box>
         </Slide>
-      }
 
-      {(flag) && 
-      <Slide direction='top' in={flag} style={{ zIndex: 10 }}>
+      <Slide direction='top' in={isOpen} style={{ zIndex: 10 }}>
       <List color={itemColor} w='100%' ml='15vw' mt='2vh'>
         {SidebarData.map((val, key) => {
         return (
@@ -111,7 +108,7 @@ function Sidebar() {
           mr='1vw'
           align='center'
           rounded={'10px'}
-          bg='light grey'
+          bg={'#EDF2F7'}
           placeholder={'Select a course'}
           onChange={pageChange}
         >
@@ -164,17 +161,14 @@ function Sidebar() {
         </Button>
         </ListItem>
 
+        
         <ListItem className='col' mr='1vw'>
         <Button
         ml='10vw' 
         variant={'solid'}
         rounded={'10px'}
         onClick={() => {
-          if(flag){
-            setFlag.off()
-          }else{
-            setFlag.on()
-          }
+          onClose()
         }}
         >{<SlBan/>}
         </Button>
@@ -185,7 +179,6 @@ function Sidebar() {
       </List>
 
       </Slide>
-      }
     </HStack>
   )
 }
