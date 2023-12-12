@@ -6,12 +6,10 @@
 .Sidebar {
   width: 100vw ;
   display: flex ;
-  justify-content: space-between ;
 }
 
 .Sidebar #title {
   font-size: 18px ;
-  font-weight: bold ;
   text-decoration: none;
 }
 
@@ -20,13 +18,7 @@
   align-items: center ;
 }
 
-/* .Sidebar #logo {
-  margin-left: 100vw;
-} */
-
 .Sidebar ul li {
-  width: 9vw;
-  height: 9vh;
   list-style: none ;
   align-items: center ;
 }
@@ -76,14 +68,14 @@
   font-family: 'Lucida Sans', 'Arial, sans-serif','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', ;
 } */
 
-.Sidebar .row:hover:not(#name):not(#active) {
+/* .Sidebar .col:hover:not(#name):not(#active) {
   cursor: pointer ;
   background-color: rgba(71, 136, 109, 0.842) ;
 }
 
 .Sidebar #active{
   background-color: rgba(71, 136, 109, 0.842) ;
-}
+} */
 
 /* .row #icon{
   flex: 30% ;

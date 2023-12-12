@@ -15,16 +15,19 @@ function CSCI2530() {
   const pointersPic = useColorModeValue(pointers, pointersLight) ;
 
   return(
-    <HStack
-    spacing={100}
+    <VStack
+    w='100%'
+    h='100%'
     >
 
-      <VStack>
+      <HStack mb='10vh'>
         {Sidebar()} 
-      </VStack>
+      </HStack>
+
+      <HStack w='100%'>
 
       <VStack
-      spacing={25}
+      w='33%'
       >
         <Cards
         img={arrays}
@@ -36,7 +39,7 @@ function CSCI2530() {
         />
       </VStack>
       <VStack
-      spacing = {25}
+      w='33%'
       >
         <Cards
         img={pointersPic}
@@ -48,7 +51,8 @@ function CSCI2530() {
         />
       </VStack>
       <VStack
-      spacing = {25}>
+      w='33%'
+      >
       <Cards
         img={housePic}
         topic='Structure'
@@ -58,7 +62,10 @@ function CSCI2530() {
         link='/Question'
         />
       </VStack>
-    </HStack>
+
+      </HStack>
+
+    </VStack>
   ) ;
 
 }

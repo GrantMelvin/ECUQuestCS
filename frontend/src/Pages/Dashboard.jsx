@@ -47,8 +47,10 @@ const Dashboard = () => {
     return(
         
         <VStack w='100vw'>
-            <HStack>{Sidebar()}</HStack>
+            <HStack mb='10vh'>{Sidebar()}</HStack>
+
             <AnimatePage w='100%'>
+            <HStack w='100%'>
             <HStack w='100%'>
             <VStack w='100%'>
                 {/* <Box>
@@ -60,7 +62,7 @@ const Dashboard = () => {
                 </Box> */}
 
                 <Feature
-                w='50%'
+                w='100%'
                 title={'We recommend you work on the following question sets:'}
                 desc={
                     <center>
@@ -139,6 +141,7 @@ const Dashboard = () => {
                     }
                     />
             </VStack>
+            </HStack>
             </AnimatePage>
         </VStack>
         

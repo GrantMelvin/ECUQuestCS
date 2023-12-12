@@ -12,16 +12,19 @@ function CSCI2540() {
   const treePic = useColorModeValue(tree, treeLight) ;
 
   return(
-    <HStack
-    spacing={100}
+    <VStack
+    w='100%'
+    h='100%'
     >
 
-      <VStack>
+      <HStack mb='10vh'>
         {Sidebar()} 
-      </VStack>
+      </HStack>
 
+
+      <HStack w='100%'>
       <VStack
-      spacing={25}
+      w='33%'
       >
         <Cards
         img={linkedList}
@@ -33,7 +36,7 @@ function CSCI2540() {
         />
       </VStack>
       <VStack
-      spacing = {25}
+      w='33%'
       >
         <Cards
         img={stack}
@@ -45,7 +48,8 @@ function CSCI2540() {
         />
       </VStack>
       <VStack
-      spacing = {25}>
+      w='33%'
+      >
       <Cards
         img={treePic}
         topic='BinaryTree'
@@ -55,7 +59,9 @@ function CSCI2540() {
         link="/Question"
         />
       </VStack>
-    </HStack>
+      </HStack>
+    </VStack>
+    
   ) ;
 
 }

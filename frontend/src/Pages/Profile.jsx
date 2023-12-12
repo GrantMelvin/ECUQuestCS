@@ -187,13 +187,14 @@ function Profile() {
         >
 
           {(formik) => (
-            <HStack 
+           
+            <VStack 
             w="100%" 
             spacing={100}>
-            {Sidebar()}
+            
+            <HStack>{Sidebar()}</HStack>
        
             <VStack spacing={50}>
-       
              <HStack spacing={30}>
        
              <VStack spacing={30}>
@@ -290,7 +291,7 @@ function Profile() {
               </Button>
 
             </VStack>
-           </HStack>
+           </VStack>
           )}
     </Formik>
   ) ;

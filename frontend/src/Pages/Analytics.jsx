@@ -9,8 +9,8 @@ const Analytics = () => {
   const {user} = useContext(AccountContext) ;
   
   return(
-    <HStack spacing={'20%'}>
-      <VStack>{Sidebar()}</VStack>
+    <VStack spacing={'20%'}>
+      <HStack mb='10vh'>{Sidebar()}</HStack>
       <VStack spacing={100}>
 
         <HStack spacing={25}>
@@ -81,7 +81,7 @@ const Analytics = () => {
 
         </HStack>
       </VStack>
-    </HStack>
+    </VStack>
      
   ) ;
 
