@@ -1,7 +1,7 @@
 import React from 'react' ;
-import { CgProfile } from '@react-icons/all-files/cg/CgProfile' ;
-import { SiGoogleanalytics } from '@react-icons/all-files/si/SiGoogleanalytics'
-import { IoMdHome } from '@react-icons/all-files/io/IoMdHome'
+import { CgProfile } from 'react-icons/cg' ;
+import { SiGoogleanalytics } from 'react-icons/si'
+import { IoMdHome } from 'react-icons/io'
 export const SidebarData= [
     {
         icon: <CgProfile/>,
