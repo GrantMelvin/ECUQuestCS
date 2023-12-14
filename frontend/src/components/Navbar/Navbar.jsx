@@ -5,8 +5,8 @@ import { useContext } from 'react' ;
 import { useNavigate } from "react-router" ;
 import { Button, Box, useColorModeValue, Image, Text, ListItem, HStack, List, Select, Slide } from '@chakra-ui/react' ;
 import logo from '../imgs/ECUQuestCS.png'
-import { CgLogOut } from '@react-icons/all-files/cg/CgLogOut'
-import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
+import { CgLogOut } from 'react-icons/cg'
+import { AiFillGithub } from 'react-icons/ai'
 import { useColorMode } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { SlBan } from "react-icons/sl";
