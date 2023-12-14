@@ -154,9 +154,15 @@ const Dashboard = () => {
                     />
             </VStack>
 
-            <VStack w='30%' h='100%'>
+            <VStack 
+            w='30%' 
+            overflowX="auto"
+            whiteSpace="wrap"
+            overflowY="auto"
+            h='50vh'>
                 <Feature title={'Community Notes'} 
                 w='100%'
+                h='100%'
                 desc={ communityNotes.map((note, index) => (
                     <Box key={index} w='100%' h='15vh'>
                         <Divider></Divider>
