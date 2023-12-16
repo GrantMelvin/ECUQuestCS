@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import AnimatePage from '../components/AnimatePage'
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useDisclosure } from "@chakra-ui/react";
+import ExperienceBar from "../components/ExperienceBar";
 
 
 const Dashboard = () => {
@@ -39,26 +40,26 @@ const Dashboard = () => {
 
     useEffect(() => { 
     if(effectRan.current === false){  
-        axios({
-            method: 'post',
-            url: 'http://localhost:4000/auth/CommunityNotes',
-            headers: {
-                'content-type': 'application/json',
-            }
-        })
-        .then(response => {
-            setCommunityNotes(response.data)
-        })
-            effectRan.current = true
+    axios({
+        method: 'post',
+        url: 'http://localhost:4000/auth/CommunityNotes',
+        headers: {
+            'content-type': 'application/json',
         }
-        let timeout
-        if (isVisible) {
-        timeout = setTimeout(() => {
-                onClose();
-            }, 3000);
-        }
-        return () => clearTimeout(timeout);
-        }, [communityNotes, isVisible]);
+    })
+    .then(response => {
+        setCommunityNotes(response.data)
+    })
+        effectRan.current = true
+    }
+    let timeout
+    if (isVisible) {
+    timeout = setTimeout(() => {
+            onClose();
+        }, 3000);
+    }
+    return () => clearTimeout(timeout);
+    }, [communityNotes, isVisible]);
 
       const formatDate = (isoDate) => {
         const date = new Date(isoDate);
@@ -188,12 +189,11 @@ const Dashboard = () => {
                     const numberOfLines = calculateNumberOfLines(note.description);
                     return (
                     <Box key={index} w='100%' h='12vh'>
-                        {console.log(numberOfLines)}
                         <Divider></Divider>
                         <Text fontWeight={'bold'}>{note.title} - {formatDate(note.created_at)}</Text>
                         <Box>
                             {numberOfLines > 3 ? 
-                            <Tooltip label={note.description}>
+                            <Tooltip label={note.description} placement='left-start'>
                                 <Text noOfLines={3}>{note.description}</Text>
                             </Tooltip>
                             :
@@ -222,29 +222,32 @@ const Dashboard = () => {
                 }>
                 </Feature>
 
+                <Box w='100%' h='3vh' align='center' mt='1vh'>
+                    <Box w='50%' h='3vh' align='center'>
+                        <ScaleFade initialScale={.1} in={isVisible}>
+                            {isVisible ? (
+                                <Alert status='success' rounded={10}>
+                                <AlertIcon />
+                                <Box w='100%' h='100%'>
+                                <AlertTitle>Success</AlertTitle>
+                                <AlertDescription>
+                                    Thank you for your feedback!
+                                </AlertDescription>
+                                </Box>
+                            </Alert>
+                            ) : ''}
+                        </ScaleFade>
+                    </Box>
+                </Box>   
             </VStack>
-
-
-
 
             </HStack>
             
-            <Box w='100%' h='5vh' align='center'>
-                <Box w='15%' h='5vh' align='center'>
-                    <ScaleFade initialScale={.1} in={isVisible}>
-                        {isVisible ? (
-                            <Alert status='success' rounded={10}>
-                            <AlertIcon />
-                            <Box w='100%' h='100%'>
-                            <AlertTitle>Success</AlertTitle>
-                            <AlertDescription>
-                                Thank you for your feedback!
-                            </AlertDescription>
-                            </Box>
-                        </Alert>
-                        ) : ''}
-                    </ScaleFade>
-                </Box>   
+
+            <Box w='100%' h='5vh' align='center' mt='3%'>           
+                <Box w='90%' h='5vh' align='center'>
+                    <ExperienceBar/>  
+                </Box>  
             </Box>
             
 
