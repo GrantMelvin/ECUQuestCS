@@ -1,5 +1,5 @@
 import Sidebar from "../components/Navbar/Navbar";
-import { HStack, VStack, Text, Button, Box, Divider } from '@chakra-ui/react';
+import { HStack, VStack, Text, Button, Box, Divider, Input, Textarea, ScaleFade, Alert, AlertIcon, AlertDescription, AlertTitle, Tooltip } from '@chakra-ui/react';
 import Feature from './Classes/Feature';
 import { useContext } from 'react';
 import { AccountContext } from "../components/AccountContext";
@@ -10,6 +10,8 @@ import axios from 'axios' ;
 import { useState } from 'react';
 import { useNavigate } from "react-router";
 import AnimatePage from '../components/AnimatePage'
+import { FaArrowRightLong } from "react-icons/fa6";
+import { useDisclosure } from "@chakra-ui/react";
 
 
 const Dashboard = () => {
@@ -26,21 +28,37 @@ const Dashboard = () => {
 
     const [communityNotes, setCommunityNotes] = useState([])
 
+    const [text, setText] = useState('');
+
+    const {
+        isOpen: isVisible,
+        onClose,
+        onOpen,
+      } = useDisclosure({ defaultIsOpen: false })
+
 
     useEffect(() => { 
-        if(effectRan.current === false){  
-          axios({
+    if(effectRan.current === false){  
+        axios({
             method: 'post',
             url: 'http://localhost:4000/auth/CommunityNotes',
             headers: {
-              'content-type': 'application/json',
+                'content-type': 'application/json',
             }
-          })
-          .then(response => {
+        })
+        .then(response => {
             setCommunityNotes(response.data)
-          })
-        effectRan.current = true ;
-      }}, [communityNotes]);
+        })
+            effectRan.current = true
+        }
+        let timeout
+        if (isVisible) {
+        timeout = setTimeout(() => {
+                onClose();
+            }, 3000);
+        }
+        return () => clearTimeout(timeout);
+        }, [communityNotes, isVisible]);
 
       const formatDate = (isoDate) => {
         const date = new Date(isoDate);
@@ -52,6 +70,15 @@ const Dashboard = () => {
         const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
       
         return `${month}/${day} ${hours}:${minutes} ${ampm}`;
+      };
+
+    const handleChange = (content) => {
+        setText(content.target.value)
+    };
+
+    // totally fucking arbitrary
+    const calculateNumberOfLines = (text) => {
+        return text.length / 42;
       };
 
     return(
@@ -66,13 +93,6 @@ const Dashboard = () => {
             <HStack w='100%'  h='100%'>
 
             <VStack w='25%'>
-                {/* <Box>
-                    <Text as='b'
-                    fontSize={'3xl'}
-                    className='header'>
-                    {'Greetings, ' + user.firstname + '!'}
-                    </Text>
-                </Box> */}
 
                 <Feature
                 w='100%'
@@ -156,23 +176,78 @@ const Dashboard = () => {
 
             <VStack 
             w='30%' 
-            overflowX="auto"
-            whiteSpace="wrap"
-            overflowY="auto"
-            h='50vh'>
-                <Feature title={'Community Notes'} 
+            h='60vh'>
+                <Feature 
+                title={'Community Notes'} 
                 w='100%'
-                h='100%'
-                desc={ communityNotes.map((note, index) => (
-                    <Box key={index} w='100%' h='15vh'>
+                h='80%'
+                overflowX="auto"
+                whiteSpace="wrap"
+                overflowY="auto"
+                desc={communityNotes.map((note, index) => {
+                    const numberOfLines = calculateNumberOfLines(note.description);
+                    return (
+                    <Box key={index} w='100%' h='12vh'>
+                        {console.log(numberOfLines)}
                         <Divider></Divider>
                         <Text fontWeight={'bold'}>{note.title} - {formatDate(note.created_at)}</Text>
-                        <Text>{note.description}</Text>
+                        <Box>
+                            {numberOfLines > 3 ? 
+                            <Tooltip label={note.description}>
+                                <Text noOfLines={3}>{note.description}</Text>
+                            </Tooltip>
+                            :
+                            <Text noOfLines={3}>{note.description}</Text>}
+                            
+                        </Box>
+                        
                     </Box>
-                ))}>
+    )})}>
                 </Feature>
+                
+                    
+                <Feature 
+                title={'Submit feedback'} 
+                align='center'
+                w='100%'
+                h='30%'
+                desc={
+                    <HStack>
+                        <Textarea resize={'none'} onChange={handleChange} value={text}/>
+                        <Button onClick={() => {
+                            setText('')
+                            onOpen()
+                        }}><FaArrowRightLong/></Button>
+                    </HStack>
+                }>
+                </Feature>
+
             </VStack>
+
+
+
+
             </HStack>
+            
+            <Box w='100%' h='5vh' align='center'>
+                <Box w='15%' h='5vh' align='center'>
+                    <ScaleFade initialScale={.1} in={isVisible}>
+                        {isVisible ? (
+                            <Alert status='success' rounded={10}>
+                            <AlertIcon />
+                            <Box w='100%' h='100%'>
+                            <AlertTitle>Success</AlertTitle>
+                            <AlertDescription>
+                                Thank you for your feedback!
+                            </AlertDescription>
+                            </Box>
+                        </Alert>
+                        ) : ''}
+                    </ScaleFade>
+                </Box>   
+            </Box>
+            
+
             </AnimatePage>
         </VStack>
         
