@@ -54,7 +54,7 @@ function Sidebar() {
     <>
     {(window.location.pathname != '/') && <HStack 
     className="Sidebar" 
-    w='100vw' 
+    w='100%' 
     h='2vh'>
     <Slide direction='top' in={!isOpen} style={{ zIndex: 10 }}>
         <Button
@@ -68,74 +68,74 @@ function Sidebar() {
         </Button>
     </Slide>
 
-        <Slide direction='top' in={isOpen} onClose={onClose} style={{ zIndex: 10 }}>
-          <Box w='100%' h='10vh' align={'left'} >
-            <HStack w='10vw' h='100%' id='logo' >
-                <Image 
-                src={logo}
-                mt='0.5vh'
-                objectFit='cover'
-                boxSize='5vw'
-                padding={'3px'}/>
-                <Box><Text fontSize={'3vh'} fontFamily={'source-code-pro'}>ECUQuestCS</Text></Box>
-            </HStack>
-          </Box>
-        </Slide>
+    <Slide direction='top' in={isOpen} onClose={onClose} style={{ zIndex: 10 }}>
+      <Box w='100%' h='10vh' align={'left'} >
+        <HStack w='10vw' h='100%' id='logo' >
+            <Image 
+            src={logo}
+            mt='0.5vh'
+            objectFit='cover'
+            boxSize='5vw'
+            padding={'3px'}/>
+            <Box><Text fontSize={'3vh'} fontFamily={'source-code-pro'}>ECUQuestCS</Text></Box>
+        </HStack>
+      </Box>
+    </Slide>
 
-      <Slide direction='top' in={isOpen} style={{ zIndex: 10 }}>
-      <List color={itemColor} w='100%' ml='15vw' mt='2vh'>
-        {SidebarData.map((val, key) => {
-        return (
-          <Button key={key} 
-          className='col'
-          w={val.title ? '10vw' : '5vw'}
-          h='5vh'
-          ml='1vw'
-          mr='1vw'
-          align='center'
-          rounded={'10px'}
-          id={window.location.pathname === val.link ? "active" : "" }
-          onClick={() => {
-            navigate(val.link)
-        }}>
-          <div id="icon">{val.icon}{' '}</div><div id='title'>{val.title ? val.title : ''}</div>
-          </Button>
-          )
-        })}
+    <Slide direction='top' in={isOpen} style={{ zIndex: 10 }}>
+    <List color={itemColor} w='100%' ml='15vw' mt='2vh'>
+      {SidebarData.map((val, key) => {
+      return (
+        <Button key={key} 
+        className='col'
+        w={val.title ? '10vw' : '5vw'}
+        h='5vh'
+        ml='1vw'
+        mr='1vw'
+        align='center'
+        rounded={'10px'}
+        id={window.location.pathname === val.link ? "active" : "" }
+        onClick={() => {
+          navigate(val.link)
+      }}>
+        <div id="icon">{val.icon}{' '}</div><div id='title'>{val.title ? val.title : ''}</div>
+        </Button>
+        )
+      })}
 
-        <Button 
-          variant={'solid'}
-          rounded={'10px'}
-          w='10vw'
-          ml='1vw'
-          mr='1vw'
-          h='5vh'
-          onClick ={() => {
-            console.log('Create Quest')
-            }}>
-              Create a Quest
-          </Button>
+      <Button 
+        variant={'solid'}
+        rounded={'10px'}
+        w='10vw'
+        ml='1vw'
+        mr='1vw'
+        h='5vh'
+        onClick ={() => {
+          console.log('Create Quest')
+          }}>
+            Create a Quest
+        </Button>
 
-        <Select
-          w='10vw'
-          h='5vh'
-          ml='1vw'
-          mr='1vw'
-          align='center'
-          rounded={'10px'}
-          bg={colorMode == 'dark' ? '#2C313D' : '#EDF2F7'}
-          placeholder={'Select a quest'}
-          onChange={pageChange}
-          value={'/Dashboard'}
-        >
-          <option value='/CSCI1010'>CSCI 1010</option>
-          <option value='/CSCI2530'>CSCI 2530</option>
-          <option value='/CSCI2540'>CSCI 2540</option>
-        </Select>
+      <Select
+        w='10vw'
+        h='5vh'
+        ml='1vw'
+        mr='1vw'
+        align='center'
+        rounded={'10px'}
+        bg={colorMode == 'dark' ? '#2C313D' : '#EDF2F7'}
+        placeholder={'Select a quest'}
+        onChange={pageChange}
+        value={'/Dashboard'}
+      >
+        <option value='/CSCI1010'>CSCI 1010</option>
+        <option value='/CSCI2530'>CSCI 2530</option>
+        <option value='/CSCI2540'>CSCI 2540</option>
+      </Select>
 
-        
+      
 
-        <List ml='19vw'>
+      <List ml='19%'>
 
         <ListItem className='col' mr='1vw'>
           <Button 
@@ -190,7 +190,7 @@ function Sidebar() {
         </Button>
         </ListItem>
 
-        </List>
+      </List>
 
       </List>
 

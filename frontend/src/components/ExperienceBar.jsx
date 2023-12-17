@@ -12,7 +12,8 @@ import {
     Stepper,
     useSteps,
     Text,
-    Stack
+    Stack,
+    Tooltip
   } from '@chakra-ui/react'
 
 const ExperienceBar = () => {
@@ -25,9 +26,15 @@ const ExperienceBar = () => {
     const {user} = useContext(AccountContext) ;
 
     const steps = [
-        { title: 'First', description: 'CSCI1010'},
-        { title: 'Second', description: 'CSCI2530'},
-        { title: 'Third', description: 'CSCI2540'},
+        { title: 'First', description: 'CSCI1010', classes: ["Primitive Data Types", 
+                                                              "Input / Output", 
+                                                              "Loops"]},
+        { title: 'Second', description: 'CSCI2530', classes: ["Arrays", 
+                                                              "Pointers", 
+                                                              "Structures"]},
+        { title: 'Third', description: 'CSCI2540', classes: ["Linked Lists", 
+                                                              "Stacks", 
+                                                              "Binary Trees"]},
       ];
       
     const { activeStep, setActiveStep } = useSteps({
@@ -45,12 +52,13 @@ const ExperienceBar = () => {
 
             return (
                 <Step key={index} gap='0'>
+                  {console.log(step.classes)}
                     <StepIndicator>
                         <StepStatus complete={<StepIcon />} />
                     </StepIndicator>
                 <StepSeparator _horizontal={{ ml: '0' }} />
-                </Step>)
-            })}
+                </Step>
+              )})}
           </Stepper>
           <Text align='right'>
             <b>Next Quest: {activeStepText}</b>
