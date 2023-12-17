@@ -52,7 +52,10 @@ function Sidebar() {
 
   return (
     <>
-    {(window.location.pathname != '/') && <HStack 
+    {(window.location.pathname != '/' 
+    && window.location.pathname != '/register'
+    && window.location.pathname != '/Login') 
+    && <HStack 
     className="Sidebar" 
     w='100%' 
     h='2vh'>

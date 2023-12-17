@@ -207,7 +207,7 @@ VALUES (59, 'Loop', 'How do you iterate over the elements of a string using a fo
 'for (char c : str) { // code }', 'for (int i = 0; i < str.size(); i++) { // code }', 'for each (char c in str) { // code }', 'for i in range(str.size()): // code', 1, 1);
 
 INSERT INTO questions (id, questiontype, questionText, choiceOne, choiceTwo, choiceThree, choiceFour, correctChoice, points) 
-VALUES (60, 'loops', 'How do you define a loop that will execute exactly 5 times in C++?', 'for i in range(5): // code', 
+VALUES (60, 'Loop', 'How do you define a loop that will execute exactly 5 times in C++?', 'for i in range(5): // code', 
 'while (i < 5) { // code }', 'do { // code } while (i < 5);', 'for (int i = 0; i < 5; i++) { // code }', 4, 1);
 
 

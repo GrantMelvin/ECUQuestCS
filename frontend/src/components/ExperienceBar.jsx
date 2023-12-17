@@ -52,21 +52,16 @@ const ExperienceBar = () => {
     },[])
 
     const steps = [
-        { title: 'First', description: 'CSCI1010', classList: classes.slice(0,3)},
-        { title: 'Second', description: 'CSCI2530', classList: classes.slice(3,6)},
-        { title: 'Third', description: 'CSCI2540', classList: classes.slice(6,9)},
+        { description: 'CSCI1010', classList: classes.slice(0,3)},
+        { description: 'CSCI2530', classList: classes.slice(3,6)},
+        { description: 'CSCI2540', classList: classes.slice(6,9)},
       ];
       
-    const { activeStep, setActiveStep } = useSteps({
-        index: currentCourse,
-        count: steps.length,
-    })
-    
-    const activeStepText = steps[activeStep].description
     return (
-        <>
+      
+        <>{console.log(currentCourse)}
         <Stack>
-          <Stepper size='sm' index={activeStep} gap='0'>
+          <Stepper size='sm' index={currentCourse} gap='0'>
             {steps.map((step, index) => {
             return (
                 <Step key={index} gap='0'>
@@ -78,7 +73,7 @@ const ExperienceBar = () => {
               )})}
           </Stepper>
           <Text align='right'>
-            <b>Next Quest: {activeStepText} - {classes[currentClass]} </b>
+            <b>Next Quest: {steps[currentCourse].description} - {classes[currentClass]} </b>
           </Text>
         </Stack>
       </>

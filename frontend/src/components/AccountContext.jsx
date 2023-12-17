@@ -11,7 +11,8 @@ const UserContext = ({ children }) => {
     firstname: null,
     lastname: null,
     email: null,
-    topic: null 
+    topic: null,
+    points: null
   });
 
   const navigate = useNavigate();

@@ -22,20 +22,20 @@ router
         email: req.session.user.email, 
         firstname: req.session.user.firstname, 
         lastname: req.session.user.lastname, 
-        topic: req.session.user.topic
+        topic: req.session.user.topic,
+        points: req.session.user.points
       });
     } else {
       res.json({ loggedIn: false });
     }
   })
   .post(async (req, res) => {
-    validateForm(req, res);
 
     const potentialLogin = await client.query(
-      "SELECT id, firstname, lastname, email, passhash FROM accounts u WHERE u.email = $1",
+      "SELECT id, firstname, lastname, email, passhash, points FROM accounts u WHERE u.email = $1",
       [req.body.email]
     );
-    
+
     if (potentialLogin.rowCount > 0) {
       const isSamePass = await bcrypt.compare(
         req.body.password,
@@ -43,19 +43,15 @@ router
       );
       if (isSamePass) {
         req.session.user = {
+          loggedIn:true,
           email: req.body.email,
           id: potentialLogin.rows[0].id,
           firstname: potentialLogin.rows[0].firstname,
           lastname: potentialLogin.rows[0].lastname,
-          topic: null
+          topic: null,
+          points: potentialLogin.rows[0].points,
         };
-        res.json({ 
-          loggedIn: true, 
-          email: req.body.email, 
-          firstname: potentialLogin.rows[0].firstname,
-          lastname: potentialLogin.rows[0].lastname,
-          topic: null
-        }) ;
+        res.json(req.session.user) ;
       } else {
         res.json({ loggedIn: false, status: "Wrong email or password" });
         console.log("Unsuccessful Login Attempt");
@@ -77,15 +73,16 @@ router.post("/register", async (req, res) => {
   if (existingUser.rowCount === 0) {
     const hashedPass = await bcrypt.hash(req.body.password, 10);
     const newUserQuery = await client.query(
-      "INSERT INTO accounts(firstname, lastname, email, passhash) values($1,$2,$3,$4) RETURNING id, email, firstname",
-      [req.body.firstname, req.body.lastname, req.body.email, hashedPass]
+      "INSERT INTO accounts(firstname, lastname, email, passhash, points) values($1,$2,$3,$4,$5) RETURNING id, email, firstname",
+      [req.body.firstname, req.body.lastname, req.body.email, hashedPass, 0]
     );
     req.session.user = {
       email: req.body.email,
       id: newUserQuery.rows[0].id,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      topic: req.body.topic
+      topic: req.body.topic,
+      points: 0
     }
     res.json({ loggedIn: true, email: req.body.email });
   } else {
@@ -101,7 +98,8 @@ router
       email: req.session.user.email, 
       firstname: req.session.user.firstname, 
       lastname: req.session.user.lastname,
-      topic: req.session.user.topic
+      topic: req.session.user.topic,
+      points: req.session.user.points
     });
   })
   .post(async (req, res) => {
@@ -214,6 +212,12 @@ router
     await client.query("UPDATE answerhistory SET correct=$1, submissionDate=$4 WHERE (email=$2 AND questionid=$3)",
     [req.body.correct, req.body.email, req.body.questionid, req.body.submissionDate]
     )
+    if(req.body.correct){
+      await client.query(
+        "UPDATE accounts SET points = points + (SELECT points FROM questions WHERE id = $1) WHERE email = $2",
+        [req.body.questionid, req.body.email]
+      );
+    }
     res.json('Sucessful Result Sent.') ;
   }
 )
@@ -228,9 +232,16 @@ router
 router
   .route('/Results')
   .post(async (req, res) => {
-    await client.query("INSERT INTO answerhistory(email, questiontype, questionid, submissionDate, correct) values($1,$2,$3,$4,$5)",
-    [req.body.email, req.body.questiontype, req.body.questionid, req.body.submissionDate, req.body.correct]
+    await client.query(
+      "INSERT INTO answerhistory(email, questiontype, questionid, submissionDate, correct) values($1,$2,$3,$4,$5)",
+      [req.body.email, req.body.questiontype, req.body.questionid, req.body.submissionDate, req.body.correct]
     )
+    if(req.body.correct){
+      await client.query(
+        "UPDATE accounts SET points = points + (SELECT points FROM questions WHERE id = $1) WHERE email = $2",
+        [req.body.questionid, req.body.email]
+      );
+    }
     res.json('Sucessful Result Sent.') ;
   }
 )
@@ -307,7 +318,6 @@ router
 router
   .route('/getClasses')
   .post(async(req, res) => {
-
     const classes = 
     ["Primitive Data Types", 
     "Input / Output", 
@@ -319,15 +329,31 @@ router
     "Stacks", 
     "Binary Trees"]
 
+    // Gets the users progress for each class
     const userProgress = await client.query(
-    "SELECT ah.questiontype, COUNT(*) AS question_count \
-    FROM answerhistory ah \
-    JOIN questions q ON ah.questionid = q.id AND ah.correct = 1 \
-    WHERE ah.correct = 1 AND ah.email = $1 \
-    GROUP BY ah.email, ah.questiontype \
-    HAVING COUNT(*) >= 10;",
-    [req.body.email]) 
+      "SELECT ah.questiontype, COUNT(*) AS question_count \
+      FROM answerhistory ah \
+      JOIN questions q ON ah.questionid = q.id AND ah.correct = 1 \
+      WHERE ah.correct = 1 AND ah.email = $1 \
+      GROUP BY ah.email, ah.questiontype \
+      HAVING COUNT(*) >= 10 \
+      ORDER BY \
+        CASE ah.questiontype \
+          WHEN 'Primitive' THEN 1 \
+          WHEN 'input/output' THEN 2 \
+          WHEN 'Loop' THEN 3 \
+          WHEN 'Array' THEN 4 \
+          WHEN 'Pointer' THEN 5 \
+          WHEN 'Structure' THEN 6 \
+          WHEN 'LinkedList' THEN 7 \
+          WHEN 'Stack' THEN 8 \
+          WHEN 'BinaryTree' THEN 9 \
+          ELSE 10 \
+        END;",
+      [req.body.email]
+    );
 
+    // Changes the name of the DB query to match our local class names
     userProgress.rows.map(item => {
       item.questiontype = item.questiontype.replace('Primitive', classes[0]);
       item.questiontype = item.questiontype.replace('input/output', classes[1]);
@@ -340,7 +366,7 @@ router
       item.questiontype = item.questiontype.replace('BinaryTree', classes[8]);
     })
 
-    const completedClasses = userProgress.rows.map(item => item.questiontype)
+    const completedClasses = (userProgress.rows.map(item => item.questiontype))
 
     let nextClass = 0
 

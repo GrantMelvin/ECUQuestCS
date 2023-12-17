@@ -73,7 +73,7 @@ function Test({...props}) {
     >
 
     {(formik) => (
-      <VStack>
+      <VStack w='100%' h='100%' mt='10vh'>
     
         <VStack 
         as={Form}

@@ -135,7 +135,7 @@ const Dashboard = () => {
                     </Box>
                 }
                 />
-
+                {console.log(user)}
                 <Feature
                 w='100%'
                 title={'Practice Missed Quests'}
