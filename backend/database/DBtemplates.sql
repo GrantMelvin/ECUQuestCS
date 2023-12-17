@@ -2,6 +2,7 @@ CREATE TABLE accounts(
         id SERIAL PRIMARY KEY,
         firstname VARCHAR(30),
         lastname VARCHAR(45),
+        points INT,
         email VARCHAR(70) NOT NULL UNIQUE,
         passhash VARCHAR NOT NULL
 );
@@ -14,7 +15,8 @@ CREATE TABLE questions(
         choiceTwo VARCHAR(2000),
         choiceThree VARCHAR(2000),
         choiceFour VARCHAR(2000),
-        correctChoice INT 
+        correctChoice INT,
+        points INT 
 );
 
 

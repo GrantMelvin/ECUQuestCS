@@ -73,11 +73,7 @@ function Test({...props}) {
     >
 
     {(formik) => (
-      <HStack>
-
-        <VStack>
-          {Sidebar()} 
-        </VStack>
+      <VStack>
     
         <VStack 
         as={Form}
@@ -175,7 +171,7 @@ function Test({...props}) {
           </Button>
 
         </VStack>    
-      </HStack>
+      </VStack>
     )}
     </Formik>
   ) ;

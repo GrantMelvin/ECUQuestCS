@@ -16,7 +16,7 @@ import CSCI2530 from './Pages/Classes/Subjects/CSCI2530' ;
 import CSCI2540 from './Pages/Classes/Subjects/CSCI2540' ;
 
 import Missed from './Pages/Classes/Subjects/Missed'
-import Question from './Pages/Classes/question';
+import Question from './Pages/Classes/Question';
 
 const Views = () => {
   const {user} = useContext(AccountContext) ;

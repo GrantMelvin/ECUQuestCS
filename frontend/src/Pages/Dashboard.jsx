@@ -31,6 +31,13 @@ const Dashboard = () => {
 
     const [text, setText] = useState('');
 
+    const [bounties, setBounties] = useState([{'name': 'Primitive Data Types',
+                                               'value': '1.5x'}, 
+                                               {'name': 'Arrays',
+                                               'value': '3x'}, 
+                                               {'name': 'Structures',
+                                               'value': '5x'}, ])
+
     const {
         isOpen: isVisible,
         onClose,
@@ -91,50 +98,64 @@ const Dashboard = () => {
 
             <AnimatePage w='100%' h='100%'>
 
-            <HStack w='100%'  h='100%'>
+            <HStack w='100%' h='100%'>
 
-            <VStack w='25%'>
+            <VStack w='30%'ml='3%'>
+                
+                <Box align='center' w='100%'>
 
                 <Feature
                 w='100%'
-                title={'We recommend you work on the following question sets:'}
+                title={'Bounty Quests'}
                 desc={
-                    <center>
-                        <ul
-                        className='listItems'>
-                            <li>
-                                {recommendations[0]}
-                            </li>
-                            <li>
-                                {recommendations[1]}
-                            </li>
-                            <li>
-                                {recommendations[2]}
-                            </li>
-                        </ul>
-                    </center>
+                    <Box w='100%' h='100%'>
+                        <HStack w='100%'>
+                            <Box w='50%'>
+                                <Text>Quest Name</Text>
+                            </Box>
+                            <Box w='50%'>
+                                <Text>Quest Value</Text>
+                            </Box>
+                        </HStack>
+                        <Divider/>
+                        <VStack>
+                        {bounties.map((bounty, index) => {
+                        return (
+                            <HStack w='100%' key={index}>
+                                <Box w='50%'>
+                                    <Text>{bounty.name}</Text>
+                                </Box>
+                                <Box w='50%'>
+                                    <Text>{bounty.value}</Text>
+                                </Box>
+                            </HStack>
+
+                        )})}
+                        </VStack>
+                    </Box>
                 }
                 />
-                
-                <Button
-                colorScheme={'teal'}
-                onClick={() => {
-                    navigate("/Missed")
-                }}>
-                    Practice some of the questions you've missed
-                </Button>
 
+                <Feature
+                w='100%'
+                title={'Practice Missed Quests'}
+                desc={
+                    <Button
+                    mt='1vh'
+                    colorScheme={'teal'}
+                    onClick={() => {
+                        navigate("/Missed")
+                    }}>
+                        Practice 
+                    </Button>
+                }
+                />
+
+                </Box>
+            
             </VStack>
 
-            <HStack>
-            <Bar
-            user={user}
-            title={'User Activity'}
-            color={itemColor}
-            lineColor={lineColor}
-            /></HStack>
-
-            <VStack w='25%'>
+            <VStack w='35%'>
 
                 <Feature
                     title={'Article Recommendations:'}
@@ -202,7 +223,7 @@ const Dashboard = () => {
                         </Box>
                         
                     </Box>
-    )})}>
+                )})}>
                 </Feature>
                 
                     

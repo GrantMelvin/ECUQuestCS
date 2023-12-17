@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AccountContext } from './AccountContext';
 import {
     Step,
@@ -15,44 +15,61 @@ import {
     Stack,
     Tooltip
   } from '@chakra-ui/react'
+import axios from 'axios';
 
 const ExperienceBar = () => {
 
-    useEffect(() => {
+  const classes = 
+  ["Primitive Data Types", 
+  "Input / Output", 
+  "Loops",
+  "Arrays", 
+  "Pointers", 
+  "Structures",
+  "Linked Lists", 
+  "Stacks", 
+  "Binary Trees"]
+
+    const {user} = useContext(AccountContext) 
+
+    const [currentClass, setCurrentClass] = useState(0)
+    const [currentCourse, setCurrentCourse] = useState(0)
     
-        
+
+    useEffect(() => {
+      axios({
+        method: 'post',
+        url: 'http://localhost:4000/auth/getClasses',
+        headers: {
+            'content-type': 'application/json',
+        },
+        data: user
+      })
+      .then(response => {
+          setCurrentClass(response.data)
+          setCurrentCourse((Math.floor(response.data / 3)))
+      })
     },[])
 
-    const {user} = useContext(AccountContext) ;
-
     const steps = [
-        { title: 'First', description: 'CSCI1010', classes: ["Primitive Data Types", 
-                                                              "Input / Output", 
-                                                              "Loops"]},
-        { title: 'Second', description: 'CSCI2530', classes: ["Arrays", 
-                                                              "Pointers", 
-                                                              "Structures"]},
-        { title: 'Third', description: 'CSCI2540', classes: ["Linked Lists", 
-                                                              "Stacks", 
-                                                              "Binary Trees"]},
+        { title: 'First', description: 'CSCI1010', classList: classes.slice(0,3)},
+        { title: 'Second', description: 'CSCI2530', classList: classes.slice(3,6)},
+        { title: 'Third', description: 'CSCI2540', classList: classes.slice(6,9)},
       ];
       
     const { activeStep, setActiveStep } = useSteps({
-        index: 0,
+        index: currentCourse,
         count: steps.length,
     })
     
     const activeStepText = steps[activeStep].description
-
     return (
         <>
         <Stack>
           <Stepper size='sm' index={activeStep} gap='0'>
             {steps.map((step, index) => {
-
             return (
                 <Step key={index} gap='0'>
-                  {console.log(step.classes)}
                     <StepIndicator>
                         <StepStatus complete={<StepIcon />} />
                     </StepIndicator>
@@ -61,7 +78,7 @@ const ExperienceBar = () => {
               )})}
           </Stepper>
           <Text align='right'>
-            <b>Next Quest: {activeStepText}</b>
+            <b>Next Quest: {activeStepText} - {classes[currentClass]} </b>
           </Text>
         </Stack>
       </>

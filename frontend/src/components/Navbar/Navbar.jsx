@@ -113,7 +113,7 @@ function Sidebar() {
         onClick ={() => {
           console.log('Create Quest')
           }}>
-            Create a Quest
+            Create a Side Quest
         </Button>
 
       <Select
@@ -124,7 +124,7 @@ function Sidebar() {
         align='center'
         rounded={'10px'}
         bg={colorMode == 'dark' ? '#2C313D' : '#EDF2F7'}
-        placeholder={'Select a quest'}
+        placeholder={'Select a Main Quest'}
         onChange={pageChange}
         value={'/Dashboard'}
       >

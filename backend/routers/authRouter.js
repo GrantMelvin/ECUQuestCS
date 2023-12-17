@@ -305,6 +305,55 @@ router
 })
 
 router
+  .route('/getClasses')
+  .post(async(req, res) => {
+
+    const classes = 
+    ["Primitive Data Types", 
+    "Input / Output", 
+    "Loops",
+    "Arrays", 
+    "Pointers", 
+    "Structures",
+    "Linked Lists", 
+    "Stacks", 
+    "Binary Trees"]
+
+    const userProgress = await client.query(
+    "SELECT ah.questiontype, COUNT(*) AS question_count \
+    FROM answerhistory ah \
+    JOIN questions q ON ah.questionid = q.id AND ah.correct = 1 \
+    WHERE ah.correct = 1 AND ah.email = $1 \
+    GROUP BY ah.email, ah.questiontype \
+    HAVING COUNT(*) >= 10;",
+    [req.body.email]) 
+
+    userProgress.rows.map(item => {
+      item.questiontype = item.questiontype.replace('Primitive', classes[0]);
+      item.questiontype = item.questiontype.replace('input/output', classes[1]);
+      item.questiontype = item.questiontype.replace('Loop', classes[2]);
+      item.questiontype = item.questiontype.replace('Array', classes[3]);
+      item.questiontype = item.questiontype.replace('Pointer', classes[4]);
+      item.questiontype = item.questiontype.replace('Structure', classes[5]);
+      item.questiontype = item.questiontype.replace('LinkedList', classes[6]);
+      item.questiontype = item.questiontype.replace('Stack', classes[7]);
+      item.questiontype = item.questiontype.replace('BinaryTree', classes[8]);
+    })
+
+    const completedClasses = userProgress.rows.map(item => item.questiontype)
+
+    let nextClass = 0
+
+    for(let i = 0 ; i < classes.length ; i++){
+      nextClass = i 
+      if(classes[i] != completedClasses[i]){
+        break
+      }
+    }
+    res.json(nextClass)
+  })
+
+router
   .route('/resetPassword')
   .post(async(req, res) => {
 
