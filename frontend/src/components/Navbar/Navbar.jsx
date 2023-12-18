@@ -66,7 +66,7 @@ function Sidebar() {
     <Slide direction='top' in={!isOpen} style={{ zIndex: 10 }}>
         <Button
         mt='2vh'
-        ml='96vw'
+        ml='95vw'
         onClick={() => {
           onOpen()
         }}
@@ -99,7 +99,6 @@ function Sidebar() {
           w={val.title ? '10vw' : '5vw'}
           h='5vh'
           ml='1vw'
-          mr='1vw'
           align='center'
           rounded={'10px'}
           color={window.location.pathname === val.link ? iconColor : 
@@ -116,9 +115,7 @@ function Sidebar() {
       <Button 
         variant={'solid'}
         rounded={'10px'}
-        w='10vw'
         ml='1vw'
-        mr='1vw'
         h='5vh'
         onClick ={() => {
           console.log('Create Quest')
@@ -127,14 +124,13 @@ function Sidebar() {
         </Button>
 
       <Select
-        w='10vw'
+        w='13%'
         h='5vh'
         ml='1vw'
-        mr='1vw'
         align='center'
         rounded={'10px'}
         bg={colorMode == 'dark' ? '#2C313D' : '#EDF2F7'}
-        placeholder={'Select a Main Quest'}
+        placeholder={'Select Quest'}
         onChange={pageChange}
         value={'/Dashboard'}
       >
@@ -145,7 +141,7 @@ function Sidebar() {
 
       
 
-        <List ml='19%'>
+        <List ml='5%'>
 
           <ListItem className='col' mr='1vw'>
             <Button 
