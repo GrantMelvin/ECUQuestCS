@@ -82,7 +82,7 @@ const Login = () => {
 
                       <VStack w='100%'>
                       <TextField 
-                        w='15vw'
+                        w='20vw'
                         name="email"
                         placeholder="Enter email"
                         autoComplete="off"
@@ -90,6 +90,7 @@ const Login = () => {
                         />
           
                       <TextField 
+                        w='20vw'
                         name="password"
                         placeholder="Enter password"
                         autoComplete="off"
