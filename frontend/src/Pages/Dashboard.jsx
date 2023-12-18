@@ -94,7 +94,7 @@ const Dashboard = () => {
         <VStack 
         w='100vw'
         h='85vh'
-        mt='10vh'>
+        mt='5vh'>
 
             <AnimatePage w='100%' h='100%'>
 
@@ -201,14 +201,14 @@ const Dashboard = () => {
                 <Feature 
                 title={'Community Notes'} 
                 w='100%'
-                h='80%'
+                h='100%'
                 overflowX="auto"
                 whiteSpace="wrap"
                 overflowY="auto"
                 desc={communityNotes.map((note, index) => {
                     const numberOfLines = calculateNumberOfLines(note.description);
                     return (
-                    <Box key={index} w='100%' h='12vh'>
+                    <Box key={index} w='100%' h='20vh'>
                         <Divider></Divider>
                         <Text fontWeight={'bold'}>{note.title} - {formatDate(note.created_at)}</Text>
                         <Box>
@@ -226,22 +226,6 @@ const Dashboard = () => {
                 </Feature>
                 
                     
-                <Feature 
-                title={'Submit feedback'} 
-                align='center'
-                w='100%'
-                h='30%'
-                desc={
-                    <HStack>
-                        <Textarea resize={'none'} onChange={handleChange} value={text}/>
-                        <Button onClick={() => {
-                            setText('')
-                            onOpen()
-                        }}><FaArrowRightLong/></Button>
-                    </HStack>
-                }>
-                </Feature>
-
                 <Box w='100%' h='3vh' align='center' mt='1vh'>
                     <Box w='50%' h='3vh' align='center'>
                         <ScaleFade initialScale={.1} in={isVisible}>

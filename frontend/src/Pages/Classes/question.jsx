@@ -84,9 +84,9 @@ const Question = () => {
       
         <VStack 
         as={Form}
-        mt={'10vh'}
         direction="column" 
-        spacing={10}> 
+        spacing={10}
+        mt='5vh'> 
 
 
           <Text 
