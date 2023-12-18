@@ -103,7 +103,7 @@ const Dashboard = () => {
             <VStack w='30%'ml='3%'>
                 
                 <Box align='center' w='100%'>
-
+                {console.log(user.points)}
                 <Feature
                 w='100%'
                 title={'Bounty Quests'}
@@ -135,7 +135,6 @@ const Dashboard = () => {
                     </Box>
                 }
                 />
-                {console.log(user)}
                 <Feature
                 w='100%'
                 title={'Practice Missed Quests'}

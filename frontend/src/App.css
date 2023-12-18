@@ -126,6 +126,10 @@
   cursor: pointer;
 }
 
+#active {
+  pointer-events: none ; 
+}
+
 /* #footer{
   position: absolute ;
   width: 15vw ;

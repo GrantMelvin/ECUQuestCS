@@ -14,7 +14,9 @@ import {
     Text,
     Stack,
     Tooltip,
-    Box
+    Box,
+    useColorMode,
+    useColorModeValue
   } from '@chakra-ui/react'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
@@ -37,7 +39,10 @@ const ExperienceBar = () => {
 
     const [currentClass, setCurrentClass] = useState(0)
     const [currentCourse, setCurrentCourse] = useState(0)
-    
+
+    const green = useColorModeValue('#56AE57', '#A1ECA7')
+    const yellow = useColorModeValue('#FEB983', '#F7EDBE')
+    const red = useColorModeValue('red', '#F77B7A')
 
     useEffect(() => {
       axios({
@@ -79,21 +84,21 @@ const ExperienceBar = () => {
                         navigate(step.link)
                       }}>{step.description}</StepTitle>
                       <StepDescription 
-                      color={step.range[0] > currentClass ? '#F77B7A' : 
-                             step.range[0] < currentClass ? '#A1ECA7' :
-                             '#FFF4AF'}>
+                      color={step.range[0] > currentClass ? red : 
+                             step.range[0] < currentClass ? green :
+                             yellow}>
                         {step.classList[0]}
                       </StepDescription>
                       <StepDescription 
-                      color={step.range[1] > currentClass ? '#F77B7A' : 
-                             step.range[1] < currentClass ? '#A1ECA7' :
-                             '#FFF4AF'}>
+                      color={step.range[1] > currentClass ? red : 
+                             step.range[1] < currentClass ? green :
+                             yellow}>
                         {step.classList[1]}
                       </StepDescription>
                       <StepDescription 
-                      color={step.range[2] > currentClass ? '#F77B7A' : 
-                             step.range[2] < currentClass ? '#A1ECA7' :
-                             '#FFF4AF'}>
+                      color={step.range[2] > currentClass ? red : 
+                             step.range[2] < currentClass ? green :
+                             yellow}>
                         {step.classList[2]}
                         </StepDescription>
                     </Box>

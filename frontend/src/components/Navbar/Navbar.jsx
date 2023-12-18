@@ -24,9 +24,13 @@ function Sidebar() {
   const navigate = useNavigate();
 
   const itemColor = useColorModeValue('black','white')
+  const iconColor = useColorModeValue('white','black')
 
   const { colorMode, toggleColorMode } = useColorMode();
   const {isOpen, onOpen, onClose} = useDisclosure()
+
+  const activeButtonColor = useColorModeValue('#319795', '#81E6D9')
+  const sideButtonColor = useColorModeValue('#EDF2F7', '#2C313D')
 
   const logOut = () => {
     fetch("http://localhost:4000/auth/signout", {
@@ -88,20 +92,23 @@ function Sidebar() {
     <Slide direction='top' in={isOpen} style={{ zIndex: 10 }}>
     <List color={itemColor} w='100%' ml='15vw' mt='2vh'>
       {SidebarData.map((val, key) => {
-      return (
-        <Button key={key} 
-        className='col'
-        w={val.title ? '10vw' : '5vw'}
-        h='5vh'
-        ml='1vw'
-        mr='1vw'
-        align='center'
-        rounded={'10px'}
-        id={window.location.pathname === val.link ? "active" : "" }
-        onClick={() => {
-          navigate(val.link)
-      }}>
-        <div id="icon">{val.icon}{' '}</div><div id='title'>{val.title ? val.title : ''}</div>
+        const version = itemColor
+        return (
+          <Button key={key} 
+          id={window.location.pathname === val.link ? 'active' : 'none'}
+          w={val.title ? '10vw' : '5vw'}
+          h='5vh'
+          ml='1vw'
+          mr='1vw'
+          align='center'
+          rounded={'10px'}
+          color={window.location.pathname === val.link ? iconColor : 
+            version == 'white' ? 'white' : 'black'}
+          bg={window.location.pathname === val.link ? activeButtonColor : sideButtonColor}
+          onClick={() => {
+            navigate(val.link)
+        }}>
+        <div id="icon">{val.icon}</div>
         </Button>
         )
       })}
@@ -138,62 +145,62 @@ function Sidebar() {
 
       
 
-      <List ml='19%'>
+        <List ml='19%'>
 
-        <ListItem className='col' mr='1vw'>
-          <Button 
-          variant={'solid'}
-          rounded={'10px'}
-          leftIcon={<CgLogOut/>}
-          onClick ={() => {
-            logOut()
-            }}>
-              Sign Out
+          <ListItem className='col' mr='1vw'>
+            <Button 
+            variant={'solid'}
+            rounded={'10px'}
+            leftIcon={<CgLogOut/>}
+            onClick ={() => {
+              logOut()
+              }}>
+                Sign Out
+            </Button>
+          </ListItem>    
+
+          <ListItem className='col' mr='1vw' > 
+            <Button 
+            variant={'solid'}
+            rounded={'10px'}
+            leftIcon={<AiFillGithub/>}
+            onClick ={() => {
+              window.location.href="https://github.com/GrantMelvin/ECUQuestCS.git" ;
+              }}>
+                Github
+            </Button>
+          </ListItem>    
+
+
+          <ListItem className='col' mr='1vw'>
+          <Button
+            variant={'solid'}
+            rounded={'10px'}
+            onClick={() => {
+              toggleColorMode()
+              }}
+          >
+            {colorMode === "dark" ? (
+              <SunIcon color="orange.200" />
+            ) : (
+              <MoonIcon color="blue.700" />
+            )}
           </Button>
-        </ListItem>    
+          </ListItem>
 
-        <ListItem className='col' mr='1vw' > 
-          <Button 
-          variant={'solid'}
-          rounded={'10px'}
-          leftIcon={<AiFillGithub/>}
-          onClick ={() => {
-            window.location.href="https://github.com/GrantMelvin/ECUQuestCS.git" ;
-            }}>
-              Github
-          </Button>
-        </ListItem>    
-
-
-        <ListItem className='col' mr='1vw'>
-        <Button
+          
+          <ListItem className='col'>
+          <Button
           variant={'solid'}
           rounded={'10px'}
           onClick={() => {
-            toggleColorMode()
-            }}
-        >
-          {colorMode === "dark" ? (
-            <SunIcon color="orange.200" />
-          ) : (
-            <MoonIcon color="blue.700" />
-          )}
-        </Button>
-        </ListItem>
+            onClose()
+          }}
+          >{<SlBan/>}
+          </Button>
+          </ListItem>
 
-        
-        <ListItem className='col'>
-        <Button
-        variant={'solid'}
-        rounded={'10px'}
-        onClick={() => {
-          onClose()
-        }}
-        >{<SlBan/>}
-        </Button>
-        </ListItem>
-
-      </List>
+        </List>
 
       </List>
 
