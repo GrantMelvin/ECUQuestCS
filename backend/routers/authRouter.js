@@ -143,6 +143,19 @@ router
 })
 
 router
+  .route('/leaderboards')
+  .post(async (req, res) => {
+    const topAccounts = await client.query(
+      "SELECT firstname, lastname, points\
+      FROM accounts \
+      ORDER BY points DESC \
+      LIMIT 10;"
+    )
+    console.log(topAccounts.rows)
+    res.json(topAccounts.rows)
+  })
+
+router
   .route('/getMissed')
   .post(async (req, res) => {
     const availableQuestions = await client.query(

@@ -1,8 +1,6 @@
 const dotenv = require('dotenv').config()
 const {Client} = require('pg')
 
-console.log(process.env.USER1)
-
 const client = new Client({
     host: process.env.HOST,
     user: process.env.USER1,

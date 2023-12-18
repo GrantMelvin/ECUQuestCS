@@ -28,6 +28,7 @@ const Dashboard = () => {
     const [articles, setArticles] = useState([['Loading',''], ['Loading',''], ['Loading',''],])
 
     const [communityNotes, setCommunityNotes] = useState([])
+    const [leaderboard, setLeaderboard] = useState([])
 
     const [text, setText] = useState('');
 
@@ -47,16 +48,21 @@ const Dashboard = () => {
 
     useEffect(() => { 
     if(effectRan.current === false){  
-    axios({
-        method: 'post',
-        url: 'http://localhost:4000/auth/CommunityNotes',
-        headers: {
-            'content-type': 'application/json',
-        }
-    })
-    .then(response => {
-        setCommunityNotes(response.data)
-    })
+        axios({
+            method: 'post',
+            url: 'http://localhost:4000/auth/CommunityNotes',
+            headers: {
+                'content-type': 'application/json',
+            }
+        }).then(response => {setCommunityNotes(response.data)})
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:4000/auth/leaderboards',
+            headers: {
+                'content-type': 'application/json',
+            }
+        }).then(response => {setLeaderboard(response.data)})
         effectRan.current = true
     }
     let timeout
@@ -68,17 +74,17 @@ const Dashboard = () => {
     return () => clearTimeout(timeout);
     }, [communityNotes, isVisible]);
 
-      const formatDate = (isoDate) => {
-        const date = new Date(isoDate);
-        
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        const hours = date.getHours() % 12 || 12; // Convert to 12-hour format
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
-      
-        return `${month}/${day} ${hours}:${minutes} ${ampm}`;
-      };
+    const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const hours = date.getHours() % 12 || 12; // Convert to 12-hour format
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+    
+    return `${month}/${day} ${hours}:${minutes} ${ampm}`;
+    };
 
     const handleChange = (content) => {
         setText(content.target.value)
@@ -93,19 +99,22 @@ const Dashboard = () => {
         
         <VStack 
         w='100vw'
-        h='85vh'
+        h='90vh'
         mt='5vh'>
 
             <AnimatePage w='100%' h='100%'>
 
             <HStack w='100%' h='100%'>
 
-            <VStack w='30%'ml='3%'>
+            <VStack w='30%' ml='3%' vh='60vh' >
                 
-                <Box align='center' w='100%'>
-                {console.log(user.points)}
+                <Box 
+                align='center' 
+                w='100%'
+                h='60vh'>
                 <Feature
                 w='100%'
+                h='60%'
                 title={'Bounty Quests'}
                 desc={
                     <Box w='100%' h='100%'>
@@ -137,6 +146,7 @@ const Dashboard = () => {
                 />
                 <Feature
                 w='100%'
+                h='40%'
                 title={'Practice Missed Quests'}
                 desc={
                     <Button
@@ -154,43 +164,38 @@ const Dashboard = () => {
             
             </VStack>
 
-            <VStack w='35%'>
+            <VStack 
+            w='40%'
+            h='60vh'>
 
                 <Feature
-                    title={'Article Recommendations:'}
+                    title={'Leaderboards'}
+                    w='100%'
+                    h='60vh'
+                    align='center'
                     desc={
-                        <center>
-                            <ul
-                            className='listItems'>
-                                <li>
-                                    <Button
-                                    onClick={() => {
-                                        window.location.href=articles[0][1] ;
-                                    }}
-                                    colorScheme='teal'>
-                                        {articles[0][0]}
-                                    </Button>
-                                </li>
-                                <li>
-                                    <Button
-                                    onClick={() => {
-                                        window.location.href=articles[1][1] ;
-                                    }}
-                                    colorScheme='teal'>
-                                        {articles[1][0]}
-                                    </Button>
-                                </li>
-                                <li>
-                                    <Button
-                                    onClick={() => {
-                                        window.location.href=articles[2][1] ;
-                                    }}
-                                    colorScheme='teal'>
-                                        {articles[2][0]}
-                                    </Button>
-                                </li>
-                            </ul>
-                        </center>
+                        <VStack w='100%' h='100%' mt='-1vh'>
+                            <HStack w='100%'>
+                            <Box w='50%'>
+                                <Text>Name</Text>
+                            </Box>
+                            <Box w='50%'>
+                                <Text>Points</Text>
+                            </Box>
+                            </HStack>
+                            <Divider/>
+                        {leaderboard.map((leader, index) => {
+                        return (
+                            <HStack w='100%' key={index} h='3vh'>
+                                <Box w='50%'>
+                                    <Text>{leader.firstname + ' ' + leader.lastname}</Text>
+                                </Box>
+                                <Box w='50%'>
+                                    <Text>{leader.points}</Text>
+                                </Box>
+                            </HStack>
+                        )})}
+                        </VStack>
                     }
                     />
             </VStack>
@@ -226,7 +231,7 @@ const Dashboard = () => {
                 </Feature>
                 
                     
-                <Box w='100%' h='3vh' align='center' mt='1vh'>
+                {/* <Box w='100%' h='3vh' align='center' mt='1vh'>
                     <Box w='50%' h='3vh' align='center'>
                         <ScaleFade initialScale={.1} in={isVisible}>
                             {isVisible ? (
@@ -242,13 +247,13 @@ const Dashboard = () => {
                             ) : ''}
                         </ScaleFade>
                     </Box>
-                </Box>   
+                </Box>    */}
             </VStack>
 
             </HStack>
             
 
-            <Box w='100%' h='5vh' align='center' mt='2%'>           
+            <Box w='100%' h='5vh' align='center' mt='1%'>           
                 <Box w='90%' h='5vh' align='center'>
                     <ExperienceBar/>  
                 </Box>  
