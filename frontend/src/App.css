@@ -122,6 +122,10 @@
   margin: 10px;
 }
 
+.stepItem {
+  cursor: pointer;
+}
+
 /* #footer{
   position: absolute ;
   width: 15vw ;

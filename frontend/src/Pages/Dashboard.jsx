@@ -265,7 +265,7 @@ const Dashboard = () => {
             </HStack>
             
 
-            <Box w='100%' h='5vh' align='center' mt='3%'>           
+            <Box w='100%' h='5vh' align='center' mt='2%'>           
                 <Box w='90%' h='5vh' align='center'>
                     <ExperienceBar/>  
                 </Box>  
