@@ -151,7 +151,7 @@ router
       ORDER BY points DESC \
       LIMIT 10;"
     )
-    console.log(topAccounts.rows)
+    // console.log(topAccounts.rows)
     res.json(topAccounts.rows)
   })
 
