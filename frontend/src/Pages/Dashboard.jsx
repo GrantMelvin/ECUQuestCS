@@ -83,15 +83,16 @@ const Dashboard = () => {
     }, [communityNotes, loading]);
 
     const formatDate = (isoDate) => {
-    const date = new Date(isoDate);
-    
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const hours = date.getHours() % 12 || 12; // Convert to 12-hour format
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
-    
-    return `${month}/${day} ${hours}:${minutes} ${ampm}`;
+
+        const date = new Date(isoDate);
+        
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const hours = date.getHours() % 12 || 12; // Convert to 12-hour format
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+        
+        return `${month}/${day} ${hours}:${minutes} ${ampm}`;
     };
 
     const handleChange = (content) => {
@@ -110,182 +111,190 @@ const Dashboard = () => {
         h='90vh'
         mt='5vh'>
 
-            {(!loading) && <AnimatePage w='100%' h='100%'>
+            {(!loading) && 
+        
+            <AnimatePage w='100%' h='100%'>
 
-            <HStack w='100%' h='100%'>
+                <HStack w='100%' h='100%'>
 
-            <VStack w='30%' ml='1%' vh='60vh' >
-                
-                <Box 
-                align='center' 
-                w='100%'
-                h='60vh'>
-                <Feature
-                w='100%'
-                h='60%'
-                title={'Bounty Quests'}
-                desc={
-                    <Box w='100%' h='100%'>
-                        <HStack w='100%'>
-                            <Box w='50%'>
-                                <Text>Name</Text>
-                            </Box>
-                            <Box w='50%'>
-                                <Text>Value</Text>
-                            </Box>
-                        </HStack>
-                        <Divider/>
-                        <VStack>
-                        {bounties.map((bounty, index) => {
-                        return (
-                            <HStack w='100%'key={index}>
-                                <Box w='55%'>
-                                    <Text>{bounty.name}</Text>
-                                </Box>
-                                <Box w='45%'>
-                                    <Text>{bounty.value}</Text>
-                                </Box>
-                            </HStack>
-
-                        )})}
-                        </VStack>
-                    </Box>
-                }
-                />
-                <Feature
-                w='100%'
-                h='40%'
-                title={'Practice Missed Quests'}
-                desc={
-                    <Button
-                    mt='1vh'
-                    colorScheme={'teal'}
-                    onClick={() => {
-                        navigate("/Missed")
-                    }}>
-                        Practice 
-                    </Button>
-                }
-                />
-
-                </Box>
-            
-            </VStack>
-
-            <VStack 
-            w='40%'
-            h='60vh'>
-
-                <Feature
-                    title={'Leaderboards'}
-                    w='100%'
-                    h='60vh'
-                    align='center'
-                    desc={
-                        <VStack w='100%' h='100%' mt='-1vh'>
-                            <HStack w='100%'>
-                            <Box w='10%'>
-                                Rank
-                            </Box>
-                            <Box w='80%'>
-                                <Text>
-                                    Name
-                                </Text>
-                            </Box>
-                            <Box w='12%'>
-                                <Text>
-                                    Points
-                                </Text>
-                            </Box>
-                            </HStack>
-                            <Divider/>
-                        {leaderboard.map((leader, index) => {
-                        return (
-                            <HStack w='100%' key={index} h='3vh'>
-                                <HStack w='100%' bg={leader.email == user.email ? highlight : 'clear'} textColor={leader.email == user.email ? itemColor : !itemColor} rounded='10px'>
-                                <Box w='10%'>
-                                    {index + 1}
-                                </Box>
-                                <Box w='80%'>
-                                    <Text>
-                                        {leader.firstname + ' ' + leader.lastname}
-                                    </Text>
-                                </Box>
-                                <Box w='12%'>
-                                    <Text>
-                                        {leader.points}
-                                    </Text>
-                                </Box>
-                                </HStack>
-                            </HStack>
-                        )})}
-                        </VStack>
-                    }
-                    />
-            </VStack>
-
-            <VStack 
-            w='30%' 
-            h='60vh'
-            mr='1%'>
-                <Feature 
-                title={'Community Notes'} 
-                w='100%'
-                h='100%'
-                overflowX="auto"
-                whiteSpace="wrap"
-                overflowY="auto"
-                desc={communityNotes.map((note, index) => {
-                    const numberOfLines = calculateNumberOfLines(note.description);
-                    return (
-                    <Box key={index} w='100%' h='20vh'>
-                        <Divider></Divider>
-                        <Text fontWeight={'bold'}>{note.title} - {formatDate(note.created_at)}</Text>
-                        <Box>
-                            {numberOfLines > 3 ? 
-                            <Tooltip label={note.description} placement='left-start'>
-                                <Text noOfLines={3}>{note.description}</Text>
-                            </Tooltip>
-                            :
-                            <Text noOfLines={3}>{note.description}</Text>}
-                            
-                        </Box>
+                    <VStack w='30%' ml='1%' vh='60vh' >
                         
-                    </Box>
-                )})}>
-                </Feature>
-                
-                    
-                {/* <Box w='100%' h='3vh' align='center' mt='1vh'>
-                    <Box w='50%' h='3vh' align='center'>
-                        <ScaleFade initialScale={.1} in={isVisible}>
-                            {isVisible ? (
-                                <Alert status='success' rounded={10}>
-                                <AlertIcon />
-                                <Box w='100%' h='100%'>
-                                <AlertTitle>Success</AlertTitle>
-                                <AlertDescription>
-                                    Thank you for your feedback!
-                                </AlertDescription>
+                        <Box 
+                        align='center' 
+                        w='100%'
+                        h='60vh'>
+                            
+                        <Feature
+                        w='100%'
+                        h='60%'
+                        title={'Bounty Quests'}
+                        sx={{'info':true},{'tooltip': 'These quests can be completed right now for extra points! Complete them before time runs out and the bounty quests are changed!'} }
+                        desc={
+                            <Box w='100%' h='100%'>
+                                <HStack w='100%'>
+                                    <Box w='50%'>
+                                        <Text>Name</Text>
+                                    </Box>
+                                    <Box w='50%'>
+                                        <Text>Value</Text>
+                                    </Box>
+                                </HStack>
+                                <Divider/>
+                                <VStack>
+                                {bounties.map((bounty, index) => {
+                                return (
+                                    <HStack w='100%'key={index}>
+                                        <Box w='55%'>
+                                            <Text>{bounty.name}</Text>
+                                        </Box>
+                                        <Box w='45%'>
+                                            <Text>{bounty.value}</Text>
+                                        </Box>
+                                    </HStack>
+
+                                )})}
+                                <Box>
+                                    <Text>Time left for these bounties: 123123</Text>
                                 </Box>
-                            </Alert>
-                            ) : ''}
-                        </ScaleFade>
-                    </Box>
-                </Box>    */}
-            </VStack>
+                                </VStack>
+                            </Box>
+                        }
+                        />
+                        <Feature
+                        w='100%'
+                        h='40%'
+                        title={'Practice Missed Quests'}
+                        desc={
+                            <Button
+                            mt='1vh'
+                            colorScheme={'teal'}
+                            onClick={() => {
+                                navigate("/Missed")
+                            }}>
+                                Practice 
+                            </Button>
+                        }
+                        />
 
-            </HStack>
-            
+                        </Box>
+                    
+                    </VStack>
 
-            <Box w='100%' h='5vh' align='center' mt='1%'>           
-                <Box w='90%' h='5vh' align='center'>
-                    <ExperienceBar/>  
-                </Box>  
-            </Box>
+                    <VStack 
+                    w='40%'
+                    h='60vh'>
+
+                        <Feature
+                            title={'Leaderboards'}
+                            w='100%'
+                            h='60vh'
+                            align='center'
+                            desc={
+                                <VStack w='100%' h='100%' mt='-1vh'>
+                                    <HStack w='100%'>
+                                    <Box w='10%'>
+                                        Rank
+                                    </Box>
+                                    <Box w='80%'>
+                                        <Text>
+                                            Name
+                                        </Text>
+                                    </Box>
+                                    <Box w='12%'>
+                                        <Text>
+                                            Points
+                                        </Text>
+                                    </Box>
+                                    </HStack>
+                                    <Divider/>
+                                {leaderboard.map((leader, index) => {
+                                return (
+                                    <HStack w='100%' key={index} h='3vh'>
+                                        <HStack w='100%' bg={leader.email == user.email ? highlight : 'clear'} textColor={leader.email == user.email ? itemColor : !itemColor} rounded='10px'>
+                                        <Box w='10%'>
+                                            {index + 1}
+                                        </Box>
+                                        <Box w='80%'>
+                                            <Text>
+                                                {leader.firstname + ' ' + leader.lastname}
+                                            </Text>
+                                        </Box>
+                                        <Box w='12%'>
+                                            <Text>
+                                                {leader.points}
+                                            </Text>
+                                        </Box>
+                                        </HStack>
+                                    </HStack>
+                                )})}
+                                </VStack>
+                            }
+                            />
+                    </VStack>
+
+                    <VStack 
+                    w='30%' 
+                    h='60vh'
+                    mr='1%'>
+                        <Feature 
+                        title={'Community Notes'} 
+                        w='100%'
+                        h='100%'
+                        overflowX="auto"
+                        whiteSpace="wrap"
+                        overflowY="auto"
+                        desc={communityNotes.map((note, index) => {
+                            const numberOfLines = calculateNumberOfLines(note.description);
+                            return (
+                            <Box key={index} w='100%' h='20vh'>
+                                <Divider></Divider>
+                                <Text fontWeight={'bold'}>{note.title} - {formatDate(note.created_at)}</Text>
+                                <Box>
+                                    {numberOfLines > 3 ? 
+                                    <Tooltip label={note.description} placement='left-start'>
+                                        <Text noOfLines={3}>{note.description}</Text>
+                                    </Tooltip>
+                                    :
+                                    <Text noOfLines={3}>{note.description}</Text>}
+                                    
+                                </Box>
+                                
+                            </Box>
+                        )})}>
+                        </Feature>
+                        
+                            
+                        {/* <Box w='100%' h='3vh' align='center' mt='1vh'>
+                            <Box w='50%' h='3vh' align='center'>
+                                <ScaleFade initialScale={.1} in={isVisible}>
+                                    {isVisible ? (
+                                        <Alert status='success' rounded={10}>
+                                        <AlertIcon />
+                                        <Box w='100%' h='100%'>
+                                        <AlertTitle>Success</AlertTitle>
+                                        <AlertDescription>
+                                            Thank you for your feedback!
+                                        </AlertDescription>
+                                        </Box>
+                                    </Alert>
+                                    ) : ''}
+                                </ScaleFade>
+                            </Box>
+                        </Box>    */}
+                    </VStack>
+
+                </HStack>
+                
+
+                <Box w='100%' h='5vh' align='center' mt='1%'>           
+                    <Box w='90%' h='5vh' align='center'>
+                        <ExperienceBar/>  
+                    </Box>  
+                </Box>
             
 
             </AnimatePage>}
+
         </VStack>
         
     ) ;

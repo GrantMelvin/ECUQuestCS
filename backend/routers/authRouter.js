@@ -329,6 +329,14 @@ router
 })
 
 router
+  .route('reset')
+  .post(async (req, res) => {
+  
+    console.log(req.body)
+    res.send(req.body)
+})
+
+router
   .route('/getClasses')
   .post(async(req, res) => {
     const classes = 

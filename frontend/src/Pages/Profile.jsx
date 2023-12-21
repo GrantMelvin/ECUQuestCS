@@ -145,6 +145,8 @@ function Profile() {
     });
   }
 
+
+
   return(
     <Formik
     initialValues = {{firstName: '', lastName: '', email: '', password: '', oldPass: ''}}
@@ -188,7 +190,7 @@ function Profile() {
         >
 
           {(formik) => (
-           <AnimatePage>
+           <AnimatePage w='100%' h='100%'>
             <VStack 
             w="100%" 
             spacing={100}
