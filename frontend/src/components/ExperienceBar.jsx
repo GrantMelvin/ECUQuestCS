@@ -106,7 +106,7 @@ const ExperienceBar = () => {
                 </Step>
               )})}
           </Stepper>
-          <Text align='right'>
+          <Text align='right' className={'segHeader'}>
             <b>Next Quest: {steps[currentCourse].description} - {classes[currentClass]} </b>
           </Text>
         </Stack>

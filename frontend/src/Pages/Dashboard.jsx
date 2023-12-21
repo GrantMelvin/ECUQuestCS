@@ -24,13 +24,13 @@ const Dashboard = () => {
     const effectRan = useRef(false) ;
     const navigate = useNavigate();
 
-    const [recommendations, setRecommendations] = useState([])
-    const [articles, setArticles] = useState([['Loading',''], ['Loading',''], ['Loading',''],])
 
     const [communityNotes, setCommunityNotes] = useState([])
     const [leaderboard, setLeaderboard] = useState([])
 
     const [text, setText] = useState('');
+
+    const [loading, setLoading] = useState(false)
 
     const [bounties, setBounties] = useState([{'name': 'Primitive Data Types',
                                                'value': '1.5x'}, 
@@ -47,32 +47,39 @@ const Dashboard = () => {
 
 
     useEffect(() => { 
-    if(effectRan.current === false){  
-        axios({
-            method: 'post',
-            url: 'http://localhost:4000/auth/CommunityNotes',
-            headers: {
-                'content-type': 'application/json',
-            }
-        }).then(response => {setCommunityNotes(response.data)})
+        if(effectRan.current === false){  
+            setLoading(true)
+            axios({
+                method: 'post',
+                url: 'http://localhost:4000/auth/CommunityNotes',
+                headers: {
+                    'content-type': 'application/json',
+                }
+            }).then(response => {
+                setCommunityNotes(response.data)
+            })
 
-        axios({
-            method: 'post',
-            url: 'http://localhost:4000/auth/leaderboards',
-            headers: {
-                'content-type': 'application/json',
-            }
-        }).then(response => {setLeaderboard(response.data)})
-        effectRan.current = true
-    }
-    let timeout
-    if (isVisible) {
-    timeout = setTimeout(() => {
-            onClose();
-        }, 3000);
-    }
-    return () => clearTimeout(timeout);
-    }, [communityNotes, isVisible]);
+            axios({
+                method: 'post',
+                url: 'http://localhost:4000/auth/leaderboards',
+                headers: {
+                    'content-type': 'application/json',
+                }
+            }).then(response => {
+                setLeaderboard(response.data)
+                setLoading(false)
+            })
+            
+            effectRan.current = true
+        }
+    // let timeout
+    // if (isVisible) {
+    // timeout = setTimeout(() => {
+    //         onClose();
+    //     }, 3000);
+    // }
+    // return () => clearTimeout(timeout);
+    }, [communityNotes, loading]);
 
     const formatDate = (isoDate) => {
     const date = new Date(isoDate);
@@ -102,7 +109,7 @@ const Dashboard = () => {
         h='90vh'
         mt='5vh'>
 
-            <AnimatePage w='100%' h='100%'>
+            {(!loading) && <AnimatePage w='100%' h='100%'>
 
             <HStack w='100%' h='100%'>
 
@@ -131,10 +138,10 @@ const Dashboard = () => {
                         {bounties.map((bounty, index) => {
                         return (
                             <HStack w='100%' key={index}>
-                                <Box w='50%'>
+                                <Box w='55%'>
                                     <Text>{bounty.name}</Text>
                                 </Box>
-                                <Box w='50%'>
+                                <Box w='45%'>
                                     <Text>{bounty.value}</Text>
                                 </Box>
                             </HStack>
@@ -260,7 +267,7 @@ const Dashboard = () => {
             </Box>
             
 
-            </AnimatePage>
+            </AnimatePage>}
         </VStack>
         
     ) ;

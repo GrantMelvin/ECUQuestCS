@@ -8,7 +8,7 @@ function Feature({ title, desc, ...rest }) {
 
       {...rest}
       >
-        <Heading fontSize='xl'>{title}</Heading>
+        <Heading fontSize='xl' fontFamily={'MedievalSharp'}>{title}</Heading>
         <Text 
         mt={4}
         >
