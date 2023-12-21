@@ -128,10 +128,10 @@ const Dashboard = () => {
                     <Box w='100%' h='100%'>
                         <HStack w='100%'>
                             <Box w='50%'>
-                                <Text>Quest Name</Text>
+                                <Text>Name</Text>
                             </Box>
                             <Box w='50%'>
-                                <Text>Quest Value</Text>
+                                <Text>Value</Text>
                             </Box>
                         </HStack>
                         <Divider/>
