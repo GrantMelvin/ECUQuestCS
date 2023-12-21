@@ -146,7 +146,7 @@ router
   .route('/leaderboards')
   .post(async (req, res) => {
     const topAccounts = await client.query(
-      "SELECT firstname, lastname, points\
+      "SELECT firstname, lastname, points, email\
       FROM accounts \
       ORDER BY points DESC \
       LIMIT 10;"

@@ -67,7 +67,7 @@ const ExperienceBar = () => {
       
     return (
         <Stack>
-          <Stepper size='sm' index={currentCourse} gap='0'>
+          <Stepper size='sm' index={currentCourse} gap='0' colorScheme={'teal'}>
             {steps.map((step, index) => {
             return (
                 <Step key={index}>
@@ -82,7 +82,9 @@ const ExperienceBar = () => {
                       className='stepItem'
                       onClick={() => {
                         navigate(step.link)
-                      }}>{step.description}</StepTitle>
+                      }}>
+                        {step.description}
+                      </StepTitle>
                       <StepDescription 
                       color={step.range[0] > currentClass ? red : 
                              step.range[0] < currentClass ? green :
@@ -101,8 +103,8 @@ const ExperienceBar = () => {
                              yellow}>
                         {step.classList[2]}
                         </StepDescription>
-                    </Box>
-                <StepSeparator _horizontal={{ ml: '0' }} />
+                        </Box>
+                <StepSeparator _horizontal={{ ml: '0' }}/>
                 </Step>
               )})}
           </Stepper>

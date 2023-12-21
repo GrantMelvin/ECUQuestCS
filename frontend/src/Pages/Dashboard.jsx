@@ -18,8 +18,9 @@ import ExperienceBar from "../components/ExperienceBar";
 const Dashboard = () => {
     const {user} = useContext(AccountContext) ;
 
-    const itemColor = useColorModeValue('black','white') ;
+    const itemColor = useColorModeValue('white','black') ;
     const lineColor = useColorModeValue('#161A22','#EDF3FC') ;
+    const highlight = useColorModeValue('#319795', '#80E6D8')
 
     const effectRan = useRef(false) ;
     const navigate = useNavigate();
@@ -113,7 +114,7 @@ const Dashboard = () => {
 
             <HStack w='100%' h='100%'>
 
-            <VStack w='30%' ml='3%' vh='60vh' >
+            <VStack w='30%' ml='1%' vh='60vh' >
                 
                 <Box 
                 align='center' 
@@ -137,7 +138,7 @@ const Dashboard = () => {
                         <VStack>
                         {bounties.map((bounty, index) => {
                         return (
-                            <HStack w='100%' key={index}>
+                            <HStack w='100%'key={index}>
                                 <Box w='55%'>
                                     <Text>{bounty.name}</Text>
                                 </Box>
@@ -183,23 +184,39 @@ const Dashboard = () => {
                     desc={
                         <VStack w='100%' h='100%' mt='-1vh'>
                             <HStack w='100%'>
-                            <Box w='50%'>
-                                <Text>Name</Text>
+                            <Box w='10%'>
+                                Rank
                             </Box>
-                            <Box w='50%'>
-                                <Text>Points</Text>
+                            <Box w='80%'>
+                                <Text>
+                                    Name
+                                </Text>
+                            </Box>
+                            <Box w='12%'>
+                                <Text>
+                                    Points
+                                </Text>
                             </Box>
                             </HStack>
                             <Divider/>
                         {leaderboard.map((leader, index) => {
                         return (
                             <HStack w='100%' key={index} h='3vh'>
-                                <Box w='50%'>
-                                    <Text>{leader.firstname + ' ' + leader.lastname}</Text>
+                                <HStack w='100%' bg={leader.email == user.email ? highlight : 'clear'} textColor={leader.email == user.email ? itemColor : !itemColor} rounded='10px'>
+                                <Box w='10%'>
+                                    {index + 1}
                                 </Box>
-                                <Box w='50%'>
-                                    <Text>{leader.points}</Text>
+                                <Box w='80%'>
+                                    <Text>
+                                        {leader.firstname + ' ' + leader.lastname}
+                                    </Text>
                                 </Box>
+                                <Box w='12%'>
+                                    <Text>
+                                        {leader.points}
+                                    </Text>
+                                </Box>
+                                </HStack>
                             </HStack>
                         )})}
                         </VStack>
@@ -209,7 +226,8 @@ const Dashboard = () => {
 
             <VStack 
             w='30%' 
-            h='60vh'>
+            h='60vh'
+            mr='1%'>
                 <Feature 
                 title={'Community Notes'} 
                 w='100%'
